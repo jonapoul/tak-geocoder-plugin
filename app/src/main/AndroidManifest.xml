@@ -1,0 +1,32 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="dev.jonpoulton.geocoder.plugin">
+
+    <application
+        android:allowBackup="false"
+        android:description="@string/app_desc"
+        android:icon="@drawable/ic_plugin_icon"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.Atak.Geocoder"
+        tools:ignore="DataExtractionRules">
+
+        <meta-data
+            android:name="plugin-api"
+            android:value="${atakApiVersion}" />
+        <meta-data
+            android:name="app_desc"
+            android:value="@string/app_desc" />
+
+        <!--suppress AndroidDomInspection -->
+        <activity
+            android:name="com.atakmap.app.component"
+            android:exported="true"
+            tools:ignore="MissingClass">
+            <intent-filter android:label="@string/app_name">
+                <action android:name="com.atakmap.app.component" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>

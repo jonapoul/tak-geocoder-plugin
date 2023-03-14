@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="positionstack_title">PositionStack</string>
+    <string name="positionstack_description">Uses the PositionStack API over the internet.</string>
+</resources>

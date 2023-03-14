@@ -1,0 +1,14 @@
+allprojects {
+    apply plugin: "io.gitlab.arturbosch.detekt"
+
+    dependencies {
+        detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:$versions.detekt"
+    }
+
+    detekt {
+        toolVersion = versions.detekt
+        config = files("$rootDir/detekt.yml")
+        buildUponDefaultConfig = true
+        reports.html.enabled = true
+    }
+}

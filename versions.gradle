@@ -1,0 +1,42 @@
+ext.versions = [
+    // Build variables
+    minSdk                  : 21,
+    compileSdk              : 33,
+    targetSdk               : 31,
+    atak                    : "4.8.1",
+    pluginVersionCode       : 1,
+    pluginVersionName       : "0.1.0",
+
+    // Plugins
+    agp                     : "4.2.2",
+    detekt                  : "1.22.0",
+    doctor                  : "0.8.1",
+    gradle_versions         : "0.46.0",
+    kotlin                  : "1.6.21",
+    kover                   : "0.6.1",
+    ktlint_cli              : "0.48.2",
+    ktlint_gradle           : "11.3.1",
+    licensee                : "1.7.0",
+    proguard                : "7.2.2",
+    spotless                : "6.18.0",
+    takdev                  : "2.4.1-debug2",
+
+    // Library versions
+    core_ktx                : "1.6.0",
+    desugaring              : "1.1.5",
+    flow_preferences        : "1.7.0",
+    koin                    : "3.2.0",
+    lifecycle               : "2.5.1",
+    okhttp                  : "4.11.0",
+    retrofit                : "2.9.0",
+    retrofit_serialization  : "0.8.0",
+    serialization           : "1.3.3",
+    timber                  : "5.0.1",
+
+    // Testing
+    coroutines              : "1.6.3",
+    junit                   : "4.13.2",
+    mockk                   : "1.12.4",
+    timber_junit_rule       : "1.0.1",
+    turbine                 : "0.8.0",
+]

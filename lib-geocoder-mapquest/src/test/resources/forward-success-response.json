@@ -1,0 +1,54 @@
+{
+  "info": {
+    "statuscode": 0,
+    "copyright": {
+      "text": "© 2022 MapQuest, Inc.",
+      "imageUrl": "http://api.mqcdn.com/res/mqlogo.gif",
+      "imageAltText": "© 2022 MapQuest, Inc."
+    },
+    "messages": []
+  },
+  "options": {
+    "maxResults": -1,
+    "ignoreLatLngInput": false
+  },
+  "results": [
+    {
+      "providedLocation": {
+        "street": "Washington,DC"
+      },
+      "locations": [
+        {
+          "street": "",
+          "adminArea6": "",
+          "adminArea6Type": "Neighborhood",
+          "adminArea5": "Washington",
+          "adminArea5Type": "City",
+          "adminArea4": "District of Columbia",
+          "adminArea4Type": "County",
+          "adminArea3": "DC",
+          "adminArea3Type": "State",
+          "adminArea1": "US",
+          "adminArea1Type": "Country",
+          "postalCode": "",
+          "geocodeQualityCode": "A5XAX",
+          "geocodeQuality": "CITY",
+          "dragPoint": false,
+          "sideOfStreet": "N",
+          "linkId": "0",
+          "unknownInput": "",
+          "type": "s",
+          "latLng": {
+            "lat": 38.89037,
+            "lng": -77.03196
+          },
+          "displayLatLng": {
+            "lat": 38.89037,
+            "lng": -77.03196
+          },
+          "mapUrl": ""
+        }
+      ]
+    }
+  ]
+}

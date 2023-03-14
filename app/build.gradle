@@ -1,0 +1,164 @@
+import com.android.build.gradle.internal.dsl.DefaultConfig
+
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "kotlin-kapt"
+    id "atak-takdev-plugin"
+    id "convention-atak-sdk"
+    id "convention-desugaring"
+}
+
+def insertBuildConfigFromLocalProps(DefaultConfig config, String key) {
+    def value = getProperty(key, null)
+    if (value == null) {
+        project.logger.warn("${key} wasn't found in local.properties, this feature will be disabled in the plugin")
+        config.buildConfigField "String", key, "null"
+    } else {
+        config.buildConfigField "String", key, "\"${value}\""
+    }
+}
+
+android {
+    compileSdkVersion versions.compileSdk
+
+    defaultConfig {
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode versions.appVersionCode
+        versionName versions.appVersionName
+
+        insertBuildConfigFromLocalProps(defaultConfig, "W3W_API_KEY")
+        insertBuildConfigFromLocalProps(defaultConfig, "POSITIONSTACK_API_KEY")
+        insertBuildConfigFromLocalProps(defaultConfig, "MAPQUEST_API_KEY")
+
+        buildConfigField "java.time.Instant", "BUILD_TIME", "java.time.Instant.ofEpochMilli(" + System.currentTimeMillis() + "L)"
+    }
+
+    dexOptions {
+        jumboMode = true
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
+            all { jvmArgs "-noverify" }
+        }
+    }
+
+    signingConfigs {
+        debug {
+            def localProps = project.rootProject.file("local.properties")
+            def kf = getValueFromPropertiesFile(localProps, "takDebugKeyFile")
+            def kfp = getValueFromPropertiesFile(localProps, "takDebugKeyFilePassword")
+            def ka = getValueFromPropertiesFile(localProps, "takDebugKeyAlias")
+            def kp = getValueFromPropertiesFile(localProps, "takDebugKeyPassword")
+
+            if (kf == null) throw new GradleException("No signing key configured!")
+            def file = new File(rootProject.projectDir, kf)
+            if (!file.exists()) throw new GradleException("File $file doesn't exist")
+
+            storeFile file
+            if (kfp != null) storePassword kfp
+            if (ka != null) keyAlias ka
+            if (kp != null) keyPassword kp
+        }
+        release {
+            def localProps = project.rootProject.file("local.properties")
+            def kf = getValueFromPropertiesFile(localProps, "takReleaseKeyFile")
+            def kfp = getValueFromPropertiesFile(localProps, "takReleaseKeyFilePassword")
+            def ka = getValueFromPropertiesFile(localProps, "takReleaseKeyAlias")
+            def kp = getValueFromPropertiesFile(localProps, "takReleaseKeyPassword")
+
+            if (kf == null) throw new GradleException("No signing key configured!")
+            def file = new File(rootProject.projectDir, kf)
+            if (!file.exists()) throw new GradleException("File $file doesn't exist")
+
+            storeFile file
+            if (kfp != null) storePassword kfp
+            if (ka != null) keyAlias ka
+            if (kp != null) keyPassword kp
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            matchingFallbacks = ["sdk"]
+            signingConfig signingConfigs.debug
+        }
+        release {
+            matchingFallbacks = ["odk"]
+            minifyEnabled true
+            if (isPipeline) {
+                proguardFiles "proguard-rules.pro", "proguard-mapping.pro"
+            } else {
+                proguardFile "proguard-rules.pro"
+            }
+            signingConfig signingConfigs.release
+        }
+    }
+
+    packagingOptions {
+        exclude "META-INF/DEPENDENCIES"
+        exclude "META-INF/INDEX.LIST"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+        freeCompilerArgs = [
+            "-opt-in=kotlin.RequiresOptIn",
+            "-opt-in=kotlin.time.ExperimentalTime",
+            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+        ]
+    }
+
+    buildFeatures {
+        buildConfig true
+        viewBinding false
+    }
+
+    sourceSets {
+        main {
+            java.srcDirs += "src/main/kotlin"
+            setProperty("archivesBaseName", "ATAK-Plugin-geocoder-${PLUGIN_VERSION}-${getVersionName()}-${ATAK_VERSION}")
+            defaultConfig.versionCode = getVersionCode()
+            defaultConfig.versionName = "$PLUGIN_VERSION (${getVersionName()}) - [$ATAK_VERSION]"
+        }
+        debug.setRoot("build-types/debug")
+        release.setRoot("build-types/release")
+    }
+
+    flavorDimensions "application"
+    productFlavors {
+        civ {
+            dimension "application"
+            manifestPlaceholders = [atakApiVersion: "com.atakmap.app@" + ATAK_VERSION + ".CIV"]
+        }
+    }
+}
+
+dependencies {
+    implementation "io.insert-koin:koin-android:$versions.koin"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+    implementation "com.fredporciuncula:flow-preferences:$versions.flow_preferences"
+    implementation "com.jakewharton.timber:timber:$versions.timber"
+
+    implementation project(":lib-core")
+    implementation project(":lib-geocoder-core")
+    implementation project(":lib-geocoder-mapquest")
+    implementation project(":lib-geocoder-positionstack")
+    implementation project(":lib-geocoder-what3words")
+    implementation project(":lib-settings")
+}

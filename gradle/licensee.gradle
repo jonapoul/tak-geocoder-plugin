@@ -1,0 +1,14 @@
+subprojects {
+    apply plugin: "app.cash.licensee"
+
+    licensee {
+        allow("Apache-2.0")
+        allow("MIT")
+
+        ignoreDependencies("com.github.chrisbanes", "PhotoView") {
+            because("issues with JitPack. See https://github.com/cashapp/licensee/issues/133")
+        }
+
+        allowUrl("https://github.com/Beyka/Android-TiffBitmapFactory/blob/master/license.txt") // MIT
+    }
+}

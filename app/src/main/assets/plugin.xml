@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- if you change this file, make sure to tick the versionCode in AndroidManifest. -->
+<!--suppress DeprecatedClassUsageInspection -->
+<plugin>
+
+    <extension
+        type="transapps.maps.plugin.lifecycle.Lifecycle"
+        impl="dev.jonpoulton.geocoder.plugin.GeocoderLifecycle"
+        singleton="true" />
+
+</plugin>

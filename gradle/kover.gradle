@@ -1,0 +1,75 @@
+ext.KOVER_EXCLUDES = [
+    /* Generated files */
+    "*.BuildConfig",
+    "*_Impl*",
+
+    /* ViewBinding */
+    "*.databinding.*",
+
+    /* DI Modules */
+    "*.di.*",
+
+    /* UI Classes */
+    "*.ui.*Adapter*",
+    "*.ui.*Animator*",
+    "*.ui.*Button*",
+    "*.ui.*Dialog*",
+    "*.ui.*Fragment*",
+    "*.ui.*Layout*",
+    "*.ui.*View*",
+    "*.ui.*ViewHolder*",
+
+    /* Serialization */
+    '*$$serializer*',
+]
+
+ext.KOVER_INCLUDES = [
+    "dev.jonpoulton.*"
+]
+
+allprojects {
+    apply plugin: "kover"
+}
+
+koverMerged {
+    enable()
+
+    filters {
+        classes {
+            excludes.addAll(KOVER_EXCLUDES)
+        }
+    }
+}
+
+subprojects {
+    kover {
+        generateReportOnCheck = true
+
+        filters {
+            classes {
+                excludes.addAll(KOVER_EXCLUDES)
+            }
+        }
+
+        instrumentation {
+            excludeTasks.add "testReleaseUnitTest"
+        }
+
+        htmlReport {
+            onCheck.set(true)
+            reportDir.set(new File(rootProject.buildDir, "reports/kover/html"))
+        }
+
+        verify {
+            onCheck.set(true)
+            rule {
+                name = "Minimum line coverage percent"
+                bound {
+                    minValue = 60
+                    counter = 'LINE'
+                    valueType = 'COVERED_PERCENTAGE'
+                }
+            }
+        }
+    }
+}

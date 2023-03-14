@@ -1,0 +1,62 @@
+{
+  "info": {
+    "statuscode": 0,
+    "copyright": {
+      "text": "© 2022 MapQuest, Inc.",
+      "imageUrl": "http://api.mqcdn.com/res/mqlogo.gif",
+      "imageAltText": "© 2022 MapQuest, Inc."
+    },
+    "messages": []
+  },
+  "options": {
+    "maxResults": 1,
+    "ignoreLatLngInput": false
+  },
+  "results": [
+    {
+      "providedLocation": {
+        "latLng": {
+          "lat": 30.333472,
+          "lng": -81.470448
+        }
+      },
+      "locations": [
+        {
+          "street": "802 Arkenstone Dr",
+          "adminArea6": "East Arlington",
+          "adminArea6Type": "Neighborhood",
+          "adminArea5": "Jacksonville",
+          "adminArea5Type": "City",
+          "adminArea4": "Duval",
+          "adminArea4Type": "County",
+          "adminArea3": "FL",
+          "adminArea3Type": "State",
+          "adminArea1": "US",
+          "adminArea1Type": "Country",
+          "postalCode": "32225",
+          "geocodeQualityCode": "L1AAA",
+          "geocodeQuality": "ADDRESS",
+          "dragPoint": false,
+          "sideOfStreet": "L",
+          "linkId": "0",
+          "unknownInput": "",
+          "type": "s",
+          "latLng": {
+            "lat": 30.33353,
+            "lng": -81.47004
+          },
+          "displayLatLng": {
+            "lat": 30.33356,
+            "lng": -81.47019
+          },
+          "mapUrl": "",
+          "roadMetadata": {
+            "speedLimitUnits": "mph",
+            "speedLimit": 30,
+            "tollRoad": null
+          }
+        }
+      ]
+    }
+  ]
+}

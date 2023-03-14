@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "latitude": 40.763841,
+      "longitude": -73.972972,
+      "type": "venue",
+      "distance": 0,
+      "name": "Apple Store",
+      "number": "767",
+      "postal_code": "10153",
+      "street": "5th Avenue",
+      "confidence": 1,
+      "region": "New York",
+      "region_code": "NY",
+      "county": "New York County",
+      "locality": "New York",
+      "administrative_area": null,
+      "neighbourhood": "Midtown East",
+      "country": "United States",
+      "country_code": "USA",
+      "continent": "North America",
+      "label": "Apple Store, New York, NY, USA"
+    }
+  ]
+}

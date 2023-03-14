@@ -1,0 +1,22 @@
+---
+complexity:
+  TooManyFunctions:
+    thresholdInClasses: 20
+    ignorePrivate: true
+  LongParameterList:
+    ignoreDefaultParameters: true
+formatting:
+  Indentation:
+    indentSize: 2
+  MultiLineIfElse:
+    active: false
+exceptions:
+  TooGenericExceptionCaught:
+    active: false
+  TooGenericExceptionThrown:
+    active: false
+style:
+  MagicNumber:
+    active: false
+  ForbiddenComment:
+    active: false

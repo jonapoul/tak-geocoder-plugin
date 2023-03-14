@@ -1,0 +1,23 @@
+{
+  "info": {
+    "statuscode": 400,
+    "copyright": {
+      "text": "© 2022 MapQuest, Inc.",
+      "imageUrl": "http://api.mqcdn.com/res/mqlogo.gif",
+      "imageAltText": "© 2022 MapQuest, Inc."
+    },
+    "messages": [
+      "Illegal argument from request: Insufficient info for location"
+    ]
+  },
+  "options": {
+    "maxResults": -1,
+    "ignoreLatLngInput": false
+  },
+  "results": [
+    {
+      "providedLocation": {},
+      "locations": []
+    }
+  ]
+}

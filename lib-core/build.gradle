@@ -1,0 +1,15 @@
+plugins {
+    id "convention-configure-lib"
+    id "convention-atak-sdk"
+    id "convention-desugaring"
+}
+
+android {
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    /* TBC */
+}

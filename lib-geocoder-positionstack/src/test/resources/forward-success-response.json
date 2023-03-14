@@ -1,0 +1,44 @@
+{
+  "data": [
+    {
+      "latitude": 38.897675,
+      "longitude": -77.036547,
+      "type": "address",
+      "name": "1600 Pennsylvania Avenue NW",
+      "number": "1600",
+      "postal_code": "20500",
+      "street": "Pennsylvania Avenue NW",
+      "confidence": 1,
+      "region": "District of Columbia",
+      "region_code": "DC",
+      "county": "District of Columbia",
+      "locality": "Washington",
+      "administrative_area": null,
+      "neighbourhood": "White House Grounds",
+      "country": "United States",
+      "country_code": "USA",
+      "continent": "North America",
+      "label": "1600 Pennsylvania Avenue NW, Washington, DC, USA"
+    },
+    {
+      "latitude": 38.897473,
+      "longitude": -77.036548,
+      "type": "address",
+      "name": "1600 Pennsylvania Avenue Northwest",
+      "number": "1600",
+      "postal_code": "20500",
+      "street": "Pennsylvania Avenue Northwest",
+      "confidence": 1,
+      "region": "District of Columbia",
+      "region_code": "DC",
+      "county": "District of Columbia",
+      "locality": "Washington",
+      "administrative_area": null,
+      "neighbourhood": "White House Grounds",
+      "country": "United States",
+      "country_code": "USA",
+      "continent": "North America",
+      "label": "1600 Pennsylvania Avenue Northwest, Washington, DC, USA"
+    }
+  ]
+}

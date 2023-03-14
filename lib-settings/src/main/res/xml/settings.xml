@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?><!--suppress ALL -->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Preference
+        android:icon="@drawable/ic_search"
+        android:key="GEOCODER_addressLookup"
+        android:summary="@string/address_provider_summary"
+        android:title="@string/address_provider_title" />
+
+    <com.atakmap.android.gui.PanSwitchPreference
+        pluginIcon="@drawable/ic_tag"
+        android:defaultValue="false"
+        android:key="GEOCODER_includeTag"
+        android:summary="@string/include_tag_summary"
+        android:title="@string/include_tag_title" />
+
+    <com.atakmap.android.gui.PanEditTextPreference
+        pluginIcon="@drawable/ic_key"
+        android:key="GEOCODER_w3wApiKey"
+        android:summary="@string/w3w_key_summary"
+        android:title="@string/w3w_key_title" />
+
+    <com.atakmap.android.gui.PanEditTextPreference
+        pluginIcon="@drawable/ic_key"
+        android:key="GEOCODER_positionStackApiKey"
+        android:summary="@string/positionstack_key_summary"
+        android:title="@string/positionstack_key_title" />
+
+    <com.atakmap.android.gui.PanEditTextPreference
+        pluginIcon="@drawable/ic_key"
+        android:key="GEOCODER_mapQuestApiKey"
+        android:summary="@string/mapquest_key_summary"
+        android:title="@string/mapquest_key_title" />
+
+    <Preference
+        android:icon="@drawable/ic_info"
+        android:key="GEOCODER_about"
+        android:title="@string/about_title" />
+
+</PreferenceScreen>

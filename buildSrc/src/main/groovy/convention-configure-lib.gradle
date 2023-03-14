@@ -1,0 +1,74 @@
+plugins {
+    id "com.android.library"
+    id "kotlin-android"
+}
+
+android {
+    compileSdkVersion versions.targetSdk
+
+    defaultConfig {
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+        freeCompilerArgs = [
+            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+            "-opt-in=kotlin.RequiresOptIn",
+            "-opt-in=kotlin.time.ExperimentalTime",
+            "-opt-in=kotlinx.serialization.ExperimentalSerializationApi",
+        ]
+    }
+
+    buildFeatures {
+        buildConfig false
+        viewBinding false
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
+            all { jvmArgs "-noverify" }
+        }
+    }
+
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
+
+    sourceSets {
+        main { java.srcDirs += "src/main/kotlin" }
+        test { java.srcDirs += "src/test/kotlin" }
+    }
+}
+
+dependencies {
+    /* Kotlin */
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+
+    /* AndroidX */
+    implementation "androidx.core:core-ktx:$versions.core_ktx"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$versions.lifecycle"
+
+    /* Dependency Injection */
+    implementation "io.insert-koin:koin-android:$versions.koin"
+
+    /* Other */
+    implementation "com.fredporciuncula:flow-preferences:$versions.flow_preferences"
+    implementation "com.jakewharton.timber:timber:$versions.timber"
+
+    /* Testing */
+    testImplementation project(":lib-test")
+}

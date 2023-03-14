@@ -1,0 +1,12 @@
+{
+  "error": {
+    "code": "validation_error",
+    "message": "Request failed with validation error",
+    "context": {
+      "query": {
+        "type": "invalid_query",
+        "message": "query must have at 3 character's"
+      }
+    }
+  }
+}
