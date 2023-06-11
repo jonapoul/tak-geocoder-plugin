@@ -98,9 +98,7 @@ allprojects {
         mavenCentral()
         google()
         maven { url "https://jitpack.io" }
-        if (!isPipeline) {
-            maven { url "${rootProject.projectDir}/maven" }
-        }
+        maven { url "${rootProject.projectDir}/maven" }
     }
 }
 

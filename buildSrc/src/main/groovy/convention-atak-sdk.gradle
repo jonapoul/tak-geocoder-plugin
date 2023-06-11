@@ -22,7 +22,7 @@ configurations.all {
 }
 
 dependencies {
-    compileOnly "com.atakmap:sdk:$versions.atak"
-    testImplementation "com.atakmap:sdk:$versions.atak"
-    androidTestImplementation "com.atakmap:sdk:$versions.atak"
+    compileOnly "com.atakmap:sdk:${versions.atak}.+"
+    testImplementation "com.atakmap:sdk:${versions.atak}.+"
+    androidTestImplementation "com.atakmap:sdk:${versions.atak}.+"
 }
