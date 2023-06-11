@@ -1,7 +1,7 @@
 ext.versions = [
     // Build variables
     minSdk                  : 21,
-    compileSdk              : 33,
+    compileSdk              : 32,
     targetSdk               : 31,
     atak                    : "4.8.1",
     pluginVersionCode       : 1,

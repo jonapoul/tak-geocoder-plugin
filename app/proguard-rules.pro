@@ -49,7 +49,7 @@
 
 # overcome an existing bug in the gradle subsystem (3.5.x)
 -keep class module-info
-
+-dontwarn module-info
 
 ######################### START KOTLINX SERIALISATION #########################
 # Keep `Companion` object fields of serializable classes.
@@ -76,3 +76,5 @@
 ######################### END KOTLINX SERIALISATION #########################
 
 -repackageclasses atakplugin.Geocoder
+-dontwarn androidx.**
+-ignorewarnings # https://github.com/Guardsquare/proguard/issues/265
