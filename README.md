@@ -11,7 +11,9 @@ Supports geocoding from the three built-in Geocoders:
 - MapQuest
 
 But also adds custom geocoders:
-- [what3words](https://what3words.com/pretty.needed.chill?redirect=true)
+- [what3words](https://what3words.com/)
+- [PositionStack](https://positionstack.com/)
+- [MapQuest](https://developer.mapquest.com/documentation/geocoding-api/) - this time it actually works!
 
 Check the [latest release page](https://github.com/jonapoul/tak-geocoder-plugin/releases/latest) to find ready-to-install APKs. Let me know if you're looking for any other specific versions.
 
@@ -39,7 +41,8 @@ Check the [latest release page](https://github.com/jonapoul/tak-geocoder-plugin/
 
 This plugin comes with optional geocoding functionality for:
 - what3words
-- positionstack
+- PositionStack
+- MapQuest
 
 These services all have API usage limits, which is why I'm not distributing the APK fully-built with all features :)
 
@@ -51,6 +54,9 @@ W3W_API_KEY=your-api-key-here
 
 # Register for a key here: https://positionstack.com/signup
 POSITIONSTACK_API_KEY=your-api-key-here
+
+# Register for a key here: https://developer.mapquest.com/user/login/sign-up
+MAPQUEST_API_KEY=your-api-key-here
 ```
 
 If any of these keys are missing from the file, that geocoder will not be registered in ATAK. Make sure the property value exactly matches that given by the respective service on their account page, then build the project's APK with:
@@ -61,13 +67,10 @@ If any of these keys are missing from the file, that geocoder will not be regist
 
 ## Known Issues
 
-The built-in MapQuest geocoder does not work at all in ATAK proper - but this plugin will support it if it ever gets fixed. It's not a problem with this plugin!
+- The built-in MapQuest geocoder does not work at all in ATAK proper - but this plugin will support it if it ever gets fixed. It's not a problem with this plugin!
+- At the moment, the plugin will auto-refresh the geocoded address every three seconds, regardless of whether the value has changed or not. So if you're using a limited API and have auto-billing set up, be careful!
 
 ## TODO
-- Custom geocoders:
-  - positionstack
-  - mapquest (working)
 - configurable refresh period
-- configurable API key for W3W (and others)
 - add caching to avoid wasting API calls
 - make HTTPS configurable for PositionStack
