@@ -46,7 +46,10 @@ This plugin comes with optional geocoding functionality for:
 
 These services all have API usage limits, which is why I'm not distributing the APK fully-built with all features :)
 
-If you want to enable any of these, you'll need an API key and an active internet connection on your device. Open/create the file `local.properties` in the root of the project, and add a property like in the snippet below:
+If you want to enable any of these, you'll need an API key for the respective service and an internet connection on your device.
+
+### At compile-time
+Open/create the file `local.properties` in the root of the project, and add a property like in the snippet below:
 
 ```properties
 # Register for a key here: https://what3words.com/select-plan?referrer=/public-api
@@ -64,6 +67,9 @@ If any of these keys are missing from the file, that geocoder will not be regist
 ```shell
 ./gradlew app:assembleCivDebug
 ```
+
+### At runtime
+Open the plugin settings by tapping the geocoder overlay in the bottom right, then select the relevant "API key" option in the settings page. Paste/type your key in, click OK and then select that geocoder.
 
 ## Known Issues
 
