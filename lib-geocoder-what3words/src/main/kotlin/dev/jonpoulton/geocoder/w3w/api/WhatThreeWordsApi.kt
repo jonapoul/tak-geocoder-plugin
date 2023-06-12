@@ -1,6 +1,5 @@
 package dev.jonpoulton.geocoder.w3w.api
 
-import dev.jonpoulton.geocoder.w3w.model.ConvertToThreeWordAddressResponse
 import dev.jonpoulton.geocoder.w3w.model.CoordinatesRequest
 import dev.jonpoulton.geocoder.w3w.model.ResponseFormat
 import dev.jonpoulton.geocoder.w3w.model.WhatThreeWordsApiKey
@@ -23,5 +22,5 @@ internal interface WhatThreeWordsApi {
     @Query("coordinates") coordinates: CoordinatesRequest,
     @Query("language") language: String = "en",
     @Query("format") format: ResponseFormat = ResponseFormat.Json,
-  ): ConvertToThreeWordAddressResponse
+  ): String
 }

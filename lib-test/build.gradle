@@ -13,6 +13,7 @@ tasks.compileKotlin {
 
 dependencies {
     api "app.cash.turbine:turbine:$versions.turbine"
+    api "com.squareup.okhttp3:mockwebserver:$versions.okhttp"
     api "io.insert-koin:koin-test-junit4:$versions.koin"
     api "junit:junit:$versions.junit"
     api "org.jetbrains.kotlin:kotlin-test-common:$versions.kotlin"
@@ -20,8 +21,8 @@ dependencies {
     api "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutines"
     api "net.lachlanmckee:timber-junit-rule:$versions.timber_junit_rule"
 
-    implementation "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:$versions.retrofit_serialization"
     implementation "com.squareup.okhttp3:okhttp:$versions.okhttp"
+    implementation "com.squareup.retrofit2:converter-scalars:$versions.retrofit"
     implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
     implementation "io.insert-koin:koin-core:$versions.koin"
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$versions.serialization"

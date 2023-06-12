@@ -13,7 +13,7 @@ internal class MapQuestPreferences(
   flowPrefs: FlowSharedPreferences,
   buildConfig: IBuildConfig,
 ) : Initializable {
-  private val default = buildConfig.positionStackApiKey?.let(::MapQuestApiKey)
+  private val default = buildConfig.mapQuestApiKey?.let(::MapQuestApiKey)
   private val apiKeyPrefPair = PrefPair<MapQuestApiKey?>(key = "mapQuestApiKey", default = null)
 
   val apiKey: Preference<MapQuestApiKey?> = flowPrefs.getNullableObject(apiKeyPrefPair, ApiKeySerializer)

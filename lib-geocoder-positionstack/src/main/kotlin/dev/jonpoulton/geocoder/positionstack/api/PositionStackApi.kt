@@ -1,9 +1,7 @@
 package dev.jonpoulton.geocoder.positionstack.api
 
 import dev.jonpoulton.geocoder.geocoding.Coordinates
-import dev.jonpoulton.geocoder.positionstack.model.ForwardGeocodingResponse
 import dev.jonpoulton.geocoder.positionstack.model.PositionStackApiKey
-import dev.jonpoulton.geocoder.positionstack.model.ReverseGeocodingResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -22,7 +20,7 @@ internal interface PositionStackApi {
     @Query("query") address: String,
     @Query("limit") limit: Int = 1,
     @Query("output") output: String = "json",
-  ): ForwardGeocodingResponse
+  ): String
 
   /**
    * Reverse geocoding is the process of converting coordinates (latitude & longitude) or an IP address to location
@@ -35,5 +33,5 @@ internal interface PositionStackApi {
     @Query("query") coordinates: Coordinates,
     @Query("limit") limit: Int = 1,
     @Query("output") output: String = "json",
-  ): ReverseGeocodingResponse
+  ): String
 }

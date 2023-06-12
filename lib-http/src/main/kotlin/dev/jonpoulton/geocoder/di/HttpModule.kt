@@ -1,12 +1,11 @@
 package dev.jonpoulton.geocoder.di
 
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dev.jonpoulton.geocoder.core.IBuildConfig
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
@@ -30,7 +29,7 @@ val httpModule = module {
 
   single {
     Retrofit.Builder()
-      .addConverterFactory(LenientJson.asConverterFactory("application/json".toMediaType()))
+      .addConverterFactory(ScalarsConverterFactory.create())
       .client(get())
   }
 }

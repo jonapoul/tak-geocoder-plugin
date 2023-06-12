@@ -1,10 +1,6 @@
 package dev.jonpoulton.geocoder.mapquest.api
 
-import dev.jonpoulton.geocoder.mapquest.model.ForwardGeocodingRequest
-import dev.jonpoulton.geocoder.mapquest.model.ForwardGeocodingResponse
 import dev.jonpoulton.geocoder.mapquest.model.MapQuestApiKey
-import dev.jonpoulton.geocoder.mapquest.model.ReverseGeocodingRequest
-import dev.jonpoulton.geocoder.mapquest.model.ReverseGeocodingResponse
 import retrofit2.http.Body
 import retrofit2.http.POST
 import retrofit2.http.Query
@@ -23,8 +19,8 @@ internal interface MapQuestApi {
   @POST("/geocoding/v1/address")
   suspend fun forwardGeocoding(
     @Query("key") apiKey: MapQuestApiKey,
-    @Body body: ForwardGeocodingRequest,
-  ): ForwardGeocodingResponse
+    @Body body: String,
+  ): String
 
   /**
    * The reverse geocoding service allows a latitude and longitude to be converted to a location.
@@ -35,6 +31,6 @@ internal interface MapQuestApi {
   @POST("/geocoding/v1/reverse")
   suspend fun reverseGeocoding(
     @Query("key") apiKey: MapQuestApiKey,
-    @Body body: ReverseGeocodingRequest,
-  ): ReverseGeocodingResponse
+    @Body body: String,
+  ): String
 }

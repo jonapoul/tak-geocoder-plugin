@@ -6,10 +6,10 @@ import com.atakmap.coremap.maps.coords.GeoBounds
 import com.atakmap.coremap.maps.coords.GeoPoint
 import dev.jonpoulton.geocoder.core.PluginContext
 import dev.jonpoulton.geocoder.core.isNetworkAvailable
-import dev.jonpoulton.geocoder.core.runBlockingOrNull
 import dev.jonpoulton.geocoder.di.MAP_QUEST_API_URL
 import dev.jonpoulton.geocoder.geocoding.CustomHttpGeocoder
 import dev.jonpoulton.geocoder.mapquest.api.MapQuestApi
+import dev.jonpoulton.geocoder.mapquest.api.MapQuestApiWrapper
 import dev.jonpoulton.geocoder.mapquest.model.ForwardGeocodingRequest
 import dev.jonpoulton.geocoder.mapquest.model.ForwardGeocodingResponse
 import dev.jonpoulton.geocoder.mapquest.model.MapQuestApiKey
@@ -58,7 +58,7 @@ internal class MapQuestGeocoder(
         ),
       ),
     )
-    val response = runBlockingOrNull { api.reverseGeocoding(key, body) }
+    val response = MapQuestApiWrapper(api).reverseGeocoding(key, body)
     Timber.i("Response = $response")
 
     return when (response) {
@@ -77,7 +77,7 @@ internal class MapQuestGeocoder(
   override fun getLocation(address: String, bounds: GeoBounds): List<Address> {
     val key = apiKeyOrNull() ?: return emptyList()
     val body = ForwardGeocodingRequest(location = address)
-    val response = runBlockingOrNull { api.forwardGeocoding(key, body) }
+    val response = MapQuestApiWrapper(api).forwardGeocoding(key, body)
     Timber.i("Response = $response")
 
     return when (response) {

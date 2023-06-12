@@ -6,6 +6,7 @@ import dev.jonpoulton.geocoder.di.LenientJson
 import dev.jonpoulton.geocoder.di.httpModule
 import dev.jonpoulton.geocoder.geocoding.Coordinates
 import dev.jonpoulton.geocoder.mapquest.api.MapQuestApi
+import dev.jonpoulton.geocoder.mapquest.api.MapQuestApiWrapper
 import dev.jonpoulton.geocoder.mapquest.model.ForwardGeocodingRequest
 import dev.jonpoulton.geocoder.mapquest.model.ForwardGeocodingResponse
 import dev.jonpoulton.geocoder.mapquest.model.MapQuestApiKey
@@ -14,11 +15,11 @@ import dev.jonpoulton.geocoder.mapquest.model.ReverseGeocodingLocation
 import dev.jonpoulton.geocoder.mapquest.model.ReverseGeocodingRequest
 import dev.jonpoulton.geocoder.mapquest.model.ReverseGeocodingResponse
 import dev.jonpoulton.geocoder.mapquest.model.ReverseSuccessLocation
+import dev.jonpoulton.geocoder.test.MockWebServerRule
 import dev.jonpoulton.geocoder.test.buildApi
 import dev.jonpoulton.geocoder.test.enqueue
 import dev.jonpoulton.geocoder.test.getResourceJson
 import kotlinx.coroutines.test.runTest
-import mockwebserver3.junit4.MockWebServerRule
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -39,11 +40,11 @@ class MapQuestApiTest {
     )
   }
 
-  private lateinit var api: MapQuestApi
+  private lateinit var api: MapQuestApiWrapper
 
   @Before
   fun before() {
-    api = buildApi(webServerRule, koinTestRule, MapQuestApi::class)
+    api = MapQuestApiWrapper(buildApi(webServerRule, koinTestRule, MapQuestApi::class))
   }
 
   @Test

@@ -1,6 +1,5 @@
 package dev.jonpoulton.geocoder.test
 
-import mockwebserver3.junit4.MockWebServerRule
 import org.koin.test.KoinTestRule
 import retrofit2.Retrofit
 import kotlin.reflect.KClass

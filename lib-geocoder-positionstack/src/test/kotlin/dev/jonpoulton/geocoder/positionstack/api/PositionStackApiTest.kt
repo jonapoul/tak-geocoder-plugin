@@ -11,11 +11,11 @@ import dev.jonpoulton.geocoder.positionstack.model.GeocodingError
 import dev.jonpoulton.geocoder.positionstack.model.PositionStackApiKey
 import dev.jonpoulton.geocoder.positionstack.model.ReverseGeocodingResponse
 import dev.jonpoulton.geocoder.positionstack.model.ReverseSuccessData
+import dev.jonpoulton.geocoder.test.MockWebServerRule
 import dev.jonpoulton.geocoder.test.buildApi
 import dev.jonpoulton.geocoder.test.enqueue
 import dev.jonpoulton.geocoder.test.getResourceJson
 import kotlinx.coroutines.test.runTest
-import mockwebserver3.junit4.MockWebServerRule
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -35,11 +35,11 @@ class PositionStackApiTest {
     )
   }
 
-  private lateinit var api: PositionStackApi
+  private lateinit var api: PositionStackApiWrapper
 
   @Before
   fun before() {
-    api = buildApi(webServerRule, koinTestRule, PositionStackApi::class)
+    api = PositionStackApiWrapper(buildApi(webServerRule, koinTestRule, PositionStackApi::class))
   }
 
   @Test
@@ -50,7 +50,7 @@ class PositionStackApiTest {
 
     /* When */
     val address = "hello world"
-    api.forwardGeocoding(API_KEY, address = address, limit = 1, output = "json")
+    api.forwardGeocoding(API_KEY, address = address)
 
     /* Then */
     val request = webServerRule.server.takeRequest()

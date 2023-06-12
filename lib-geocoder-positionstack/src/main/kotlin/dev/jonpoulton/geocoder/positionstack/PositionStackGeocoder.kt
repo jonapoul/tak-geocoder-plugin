@@ -6,11 +6,11 @@ import com.atakmap.coremap.maps.coords.GeoBounds
 import com.atakmap.coremap.maps.coords.GeoPoint
 import dev.jonpoulton.geocoder.core.PluginContext
 import dev.jonpoulton.geocoder.core.isNetworkAvailable
-import dev.jonpoulton.geocoder.core.runBlockingOrNull
 import dev.jonpoulton.geocoder.di.POSITION_STACK_API_URL
 import dev.jonpoulton.geocoder.geocoding.Coordinates
 import dev.jonpoulton.geocoder.geocoding.CustomHttpGeocoder
 import dev.jonpoulton.geocoder.positionstack.api.PositionStackApi
+import dev.jonpoulton.geocoder.positionstack.api.PositionStackApiWrapper
 import dev.jonpoulton.geocoder.positionstack.model.ForwardGeocodingResponse
 import dev.jonpoulton.geocoder.positionstack.model.PositionStackApiKey
 import dev.jonpoulton.geocoder.positionstack.model.ReverseGeocodingResponse
@@ -41,7 +41,7 @@ internal class PositionStackGeocoder(
   override fun getLocation(point: GeoPoint): List<Address> {
     val key = apiKeyOrNull() ?: return emptyList()
     val coordinates = Coordinates(point.latitude, point.longitude)
-    val response = runBlockingOrNull { api.reverseGeocoding(key, coordinates) }
+    val response = PositionStackApiWrapper(api).reverseGeocoding(key, coordinates)
     Timber.i("Response = $response")
 
     return when (response) {
@@ -63,7 +63,7 @@ internal class PositionStackGeocoder(
 
   override fun getLocation(address: String, bounds: GeoBounds): List<Address> {
     val key = apiKeyOrNull() ?: return emptyList()
-    val response = runBlockingOrNull { api.forwardGeocoding(key, address) }
+    val response = PositionStackApiWrapper(api).forwardGeocoding(key, address)
     Timber.i("Response = $response")
 
     return when (response) {

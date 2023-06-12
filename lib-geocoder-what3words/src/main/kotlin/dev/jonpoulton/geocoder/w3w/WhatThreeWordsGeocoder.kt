@@ -6,10 +6,10 @@ import com.atakmap.coremap.maps.coords.GeoBounds
 import com.atakmap.coremap.maps.coords.GeoPoint
 import dev.jonpoulton.geocoder.core.PluginContext
 import dev.jonpoulton.geocoder.core.isNetworkAvailable
-import dev.jonpoulton.geocoder.core.runBlockingOrNull
 import dev.jonpoulton.geocoder.di.W3W_API_URL
 import dev.jonpoulton.geocoder.geocoding.CustomHttpGeocoder
 import dev.jonpoulton.geocoder.w3w.api.WhatThreeWordsApi
+import dev.jonpoulton.geocoder.w3w.api.WhatThreeWordsApiWrapper
 import dev.jonpoulton.geocoder.w3w.model.CoordinatesRequest
 import dev.jonpoulton.geocoder.w3w.model.WhatThreeWordsApiKey
 import dev.jonpoulton.geocoder.what3words.R
@@ -38,17 +38,20 @@ internal class WhatThreeWordsGeocoder(
 
   override fun getLocation(point: GeoPoint): List<Address> {
     val key = apiKeyOrNull() ?: return emptyList()
-    return runBlockingOrNull {
-      val response = api.convertToThreeWordAddress(
-        apiKey = key,
-        coordinates = CoordinatesRequest(point.latitude, point.longitude),
-      )
-      Timber.i("Response = $response")
-      val address = Address(Locale.getDefault()).apply {
-        setAddressLine(0, response.words.toString())
+
+    val coordinates = CoordinatesRequest(point.latitude, point.longitude)
+    val response = WhatThreeWordsApiWrapper(api).reverseGeocoding(key, coordinates)
+    Timber.i("Response = $response")
+
+    return when (response) {
+      null -> emptyList()
+      else -> {
+        val address = Address(Locale.getDefault()).apply {
+          setAddressLine(0, response.words.toString())
+        }
+        listOf(address)
       }
-      listOf(address)
-    } ?: emptyList()
+    }
   }
 
   override fun getLocation(address: String, bounds: GeoBounds): List<Address> {

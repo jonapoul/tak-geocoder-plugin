@@ -7,8 +7,8 @@ plugins {
 dependencies {
     implementation project(":lib-core")
 
-    api "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:$versions.retrofit_serialization"
     api "org.jetbrains.kotlinx:kotlinx-serialization-json:$versions.serialization"
+    api "com.squareup.retrofit2:converter-scalars:$versions.retrofit"
     api "com.squareup.retrofit2:retrofit:$versions.retrofit"
     api "com.squareup.okhttp3:logging-interceptor:$versions.okhttp"
     api "com.squareup.okhttp3:okhttp:$versions.okhttp"

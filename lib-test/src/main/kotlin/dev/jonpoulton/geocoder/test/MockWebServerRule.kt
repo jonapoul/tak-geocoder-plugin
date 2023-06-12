@@ -1,7 +1,6 @@
 package dev.jonpoulton.geocoder.test
 
-import mockwebserver3.MockWebServer
-import mockwebserver3.junit4.MockWebServerRule
+import okhttp3.mockwebserver.MockWebServer
 import org.junit.rules.ExternalResource
 import java.io.IOException
 import java.util.logging.Level

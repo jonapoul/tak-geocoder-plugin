@@ -1,7 +1,6 @@
 package dev.jonpoulton.geocoder.test
 
-import mockwebserver3.MockResponse
-import mockwebserver3.junit4.MockWebServerRule
+import okhttp3.mockwebserver.MockResponse
 
 fun MockWebServerRule.enqueue(
   body: String?,
