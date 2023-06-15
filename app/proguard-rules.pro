@@ -12,9 +12,6 @@
 # we need line numbers in our stack traces otherwise they are pretty useless
 -renamesourcefileattribute SourceFile
 -keepattributes SourceFile,LineNumberTable
-
-#-applymapping <atak.proguard.mapping>
-
 -keepattributes *Annotation*
 -keepattributes Signature, InnerClasses
 
@@ -75,6 +72,33 @@
 }
 ######################### END KOTLINX SERIALISATION #########################
 
+####################### START OKHTTP #######################
+# From https://square.github.io/okhttp/features/r8_proguard/
+
+# JSR 305 annotations are for embedding nullability information.
+-dontwarn javax.annotation.**
+
+# A resource is loaded with a relative path so the package of this class must be preserved.
+-adaptresourcefilenames okhttp3/internal/publicsuffix/PublicSuffixDatabase.gz
+
+# Animal Sniffer compileOnly dependency to ensure APIs are compatible with older versions of Java.
+-dontwarn org.codehaus.mojo.animal_sniffer.*
+
+# OkHttp platform used only on JVM and when Conscrypt and other security providers are available.
+-dontwarn okhttp3.internal.platform.**
+-dontwarn org.conscrypt.**
+-dontwarn org.bouncycastle.**
+-dontwarn org.openjsse.**
+####################### END OKHTTP #######################
+
+####################### START OKIO #######################
+# from https://github.com/square/okio/blob/parent-3.2.0/okio/src/jvmMain/resources/META-INF/proguard/okio.pro
+-dontwarn org.codehaus.mojo.animal_sniffer.*
+####################### END OKIO #######################
+
+####################### START CUSTOM #######################
 -repackageclasses atakplugin.Geocoder
--dontwarn androidx.**
--ignorewarnings # https://github.com/Guardsquare/proguard/issues/265
+-dontwarn androidx.** # included in SDK
+-dontwarn kotlinx.** # included in SDK
+#-ignorewarnings # https://github.com/Guardsquare/proguard/issues/265
+####################### END CUSTOM #######################
