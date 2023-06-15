@@ -5,6 +5,8 @@ import dev.jonpoulton.geocoder.geocoding.Initializable
 import dev.jonpoulton.geocoder.positionstack.PositionStackGeocoder
 import dev.jonpoulton.geocoder.positionstack.PositionStackPreferences
 import dev.jonpoulton.geocoder.positionstack.api.PositionStackApi
+import org.koin.core.module.dsl.factoryOf
+import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -23,7 +25,7 @@ val positionStackModule = module {
       .create(PositionStackApi::class.java)
   }
 
-  single { PositionStackGeocoder(get(), get(), get(), get()) } bind CustomHttpGeocoder::class
+  singleOf(::PositionStackGeocoder) bind CustomHttpGeocoder::class
 
-  factory { PositionStackPreferences(get(), get()) } bind Initializable::class
+  factoryOf(::PositionStackPreferences) bind Initializable::class
 }

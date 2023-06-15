@@ -5,6 +5,8 @@ import dev.jonpoulton.geocoder.geocoding.Initializable
 import dev.jonpoulton.geocoder.mapquest.MapQuestGeocoder
 import dev.jonpoulton.geocoder.mapquest.MapQuestPreferences
 import dev.jonpoulton.geocoder.mapquest.api.MapQuestApi
+import org.koin.core.module.dsl.factoryOf
+import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -19,7 +21,7 @@ val mapQuestModule = module {
       .create(MapQuestApi::class.java)
   }
 
-  single { MapQuestGeocoder(get(), get(), get(), get()) } bind CustomHttpGeocoder::class
+  singleOf(::MapQuestGeocoder) bind CustomHttpGeocoder::class
 
-  factory { MapQuestPreferences(get(), get()) } bind Initializable::class
+  factoryOf(::MapQuestPreferences) bind Initializable::class
 }

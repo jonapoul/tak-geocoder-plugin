@@ -5,6 +5,8 @@ import dev.jonpoulton.geocoder.geocoding.Initializable
 import dev.jonpoulton.geocoder.w3w.WhatThreeWordsGeocoder
 import dev.jonpoulton.geocoder.w3w.WhatThreeWordsPreferences
 import dev.jonpoulton.geocoder.w3w.api.WhatThreeWordsApi
+import org.koin.core.module.dsl.factoryOf
+import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -19,7 +21,7 @@ val whatThreeWordsModule = module {
       .create(WhatThreeWordsApi::class.java)
   }
 
-  single { WhatThreeWordsGeocoder(get(), get(), get(), get()) } bind CustomHttpGeocoder::class
+  singleOf(::WhatThreeWordsGeocoder) bind CustomHttpGeocoder::class
 
-  factory { WhatThreeWordsPreferences(get(), get()) } bind Initializable::class
+  factoryOf(::WhatThreeWordsPreferences) bind Initializable::class
 }
