@@ -86,14 +86,6 @@ if (!isPipeline) {
 }
 
 allprojects {
-    if (!isPipeline) {
-        task runChecks() {
-            dependsOn "detekt"
-            dependsOn "ktlintCheck"
-            dependsOn "spotlessCheck"
-        }
-    }
-
     repositories {
         mavenCentral()
         google()
