@@ -6,7 +6,6 @@ pluginManagement {
     mavenCentral()
     google()
     maven { url = uri("https://jitpack.io") }
-    mavenLocal()
 
     data class RepoProperties(
       val takrepoUrl: String?,

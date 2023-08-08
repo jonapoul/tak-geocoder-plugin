@@ -1,7 +1,6 @@
-@file:Suppress("UnstableApiUsage")
+@file:Suppress("UnstableApiUsage", "SwallowedException")
 
 import com.android.build.api.dsl.DefaultConfig
-
 import com.atakmap.gradle.takdev.TakDevPlugin
 
 plugins {
