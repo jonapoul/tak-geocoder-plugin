@@ -5,5 +5,5 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val geocodingModule = module {
-  single { LocationMonitor(get(), get(), get(), get(named(KoinDispatchers.IO)), get()) }
+  single { LocationMonitor(get(), get(), get(), get(), get()) }
 }

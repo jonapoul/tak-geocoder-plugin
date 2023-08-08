@@ -5,11 +5,24 @@ import android.content.DialogInterface
 import android.view.View
 import androidx.annotation.ArrayRes
 import androidx.annotation.StringRes
+import com.atakmap.android.maps.MapView
 
-class PluginAlertDialogBuilder(
-  appContext: AppContext,
-  private val pluginContext: PluginContext,
-) : AlertDialog.Builder(appContext) {
+class PluginAlertDialogBuilder : AlertDialog.Builder {
+  private val pluginContext: PluginContext
+
+  constructor(
+    appContext: AppContext,
+    pluginContext: PluginContext,
+  ) : super(appContext) {
+    this.pluginContext = pluginContext
+  }
+
+  constructor(
+    mapView: MapView,
+    pluginContext: PluginContext,
+  ) : super(mapView.context) {
+    this.pluginContext = pluginContext
+  }
 
   override fun setTitle(@StringRes titleId: Int): PluginAlertDialogBuilder =
     super.setTitle(pluginContext.getString(titleId)) as PluginAlertDialogBuilder
