@@ -4,7 +4,7 @@ plugins {
   id("convention-style")
   id("convention-test")
 
-  id("org.jetbrains.kotlin.plugin.serialization")
+  kotlin("plugin.serialization")
 }
 
 dependencies {
@@ -13,10 +13,8 @@ dependencies {
   api(project(":lib-geocoder-core"))
 
   implementation(libs.flowpreferences)
-  implementation(libs.koin.android)
   implementation(libs.kotlinx.serialization.json)
   implementation(libs.retrofit.core)
-  implementation(libs.timber)
 
   testImplementation(project(":lib-test"))
 }

@@ -16,8 +16,8 @@ android {
 
 dependencies {
   implementation(libs.flowpreferences)
-  implementation(libs.koin.android)
-  implementation(libs.timber)
+  api(libs.koin.android)
+  api(libs.timber)
 
   testImplementation(project(":lib-test"))
 }

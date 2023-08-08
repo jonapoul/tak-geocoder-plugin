@@ -45,9 +45,4 @@ android {
   packagingOptions {
     resources.excludes.add("META-INF/*")
   }
-
-  sourceSets {
-    getByName("main") { java.srcDirs("src/test/kotlin") }
-    getByName("test") { java.srcDirs("src/test/kotlin") }
-  }
 }

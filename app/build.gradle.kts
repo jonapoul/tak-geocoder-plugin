@@ -142,16 +142,14 @@ android {
 }
 
 dependencies {
-  implementation(libs.koin.android)
-  implementation(libs.flowpreferences)
-  implementation(libs.timber)
-
-  implementation(project(":lib-core"))
-  implementation(project(":lib-geocoder-core"))
-  implementation(project(":lib-geocoder-mapquest"))
-  implementation(project(":lib-geocoder-positionstack"))
-  implementation(project(":lib-geocoder-what3words"))
-  implementation(project(":lib-settings"))
+  listOf(
+    ":lib-core",
+    ":lib-geocoder-core",
+    ":lib-geocoder-mapquest",
+    ":lib-geocoder-positionstack",
+    ":lib-geocoder-what3words",
+    ":lib-settings",
+  ).map(::project).forEach(::implementation)
 
   testImplementation(project(":lib-test"))
 }

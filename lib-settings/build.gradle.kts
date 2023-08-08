@@ -18,8 +18,6 @@ dependencies {
   implementation(project(":lib-core"))
 
   implementation(libs.flowpreferences)
-  implementation(libs.koin.android)
-  implementation(libs.timber)
 
   testImplementation(project(":lib-test"))
 }
