@@ -32,10 +32,6 @@ android {
     )
   }
 
-  dexOptions {
-    jumboMode = true
-  }
-
   lint {
     checkReleaseBuilds = false
     abortOnError = false
