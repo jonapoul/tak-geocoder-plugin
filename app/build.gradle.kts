@@ -151,6 +151,11 @@ dependencies {
     ":lib-settings",
   ).map(::project).forEach(::implementation)
 
+  implementation(libs.koin.android)
+  implementation(libs.koin.core)
+  implementation(libs.flowpreferences)
+  implementation(libs.timber)
+
   testImplementation(project(":lib-test"))
 }
 

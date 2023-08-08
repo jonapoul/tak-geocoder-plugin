@@ -8,6 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import org.koin.dsl.module
 
+@Suppress("InjectDispatcher")
 val coroutineModule = module {
   /* Application scope */
   single { CoroutineScope(SupervisorJob()) }
