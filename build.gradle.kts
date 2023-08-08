@@ -5,8 +5,10 @@ buildscript {
   dependencies {
     val isPipeline = properties["takrepo.url"] != null
     if (isPipeline) {
+      /* Full-fat plugin */
       classpath("com.atakmap.gradle:atak-gradle-takdev:2.+")
     } else {
+      /* Abridged plugin which skips a bunch of the SDK resolution steps */
       val takDevVersion = libs.versions.takdev.get()
       classpath("com.github.jonapoul:atak-gradle-takdev:$takDevVersion")
     }
@@ -27,6 +29,7 @@ plugins {
   alias(libs.plugins.doctor) // configured below
 
   id("convention-properties")
+  id("convention-extras")
 }
 
 configurations.all {
@@ -39,9 +42,7 @@ configurations.all {
 }
 
 extra.apply {
-  val urlKey = "takrepo.url"
-  set("isDevKitEnabled", { project.getProperty(urlKey, null) != null })
-  set("takrepoUrl", project.getProperty(urlKey, "http://localhost/"))
+  set("takrepoUrl", project.getProperty("takrepo.url", "http://localhost/"))
   set("takrepoUser", project.getProperty("takrepo.user", "invalid"))
   set("takrepoPassword", project.getProperty("takrepo.password", "invalid"))
   set("takdevPlugin", project.getProperty("takrepo.plugin", "${rootDir}/../../atak-gradle-takdev.jar"))

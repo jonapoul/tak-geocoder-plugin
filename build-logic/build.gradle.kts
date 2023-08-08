@@ -1,5 +1,6 @@
 plugins {
   `kotlin-dsl`
+  id("groovy-gradle-plugin")
 }
 
 dependencies {
