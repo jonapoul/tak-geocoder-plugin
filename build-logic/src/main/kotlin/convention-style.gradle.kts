@@ -56,9 +56,6 @@ spotless {
     trimTrailingWhitespace()
     endWithNewline()
   }
-  freshmark {
-    target("*.md")
-  }
   json {
     target("*.json")
     simple()
