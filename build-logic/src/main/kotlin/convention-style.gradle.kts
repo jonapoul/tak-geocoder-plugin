@@ -13,10 +13,17 @@ val libs = the<LibrariesForLibs>()
 
 licensee {
   listOf(
-    /* Most libraries */
-    "Apache-2.0",
+    "Apache-2.0", // Most libraries
+    "MIT", // Timber-JUnit
+    "EPL-1.0", // JUnit
   ).forEach { license ->
     allow(license)
+  }
+
+  listOf(
+    "http://www.opensource.org/licenses/bsd-license.php", // Hamcrest
+  ).forEach { url ->
+    allowUrl(url)
   }
 }
 
