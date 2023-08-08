@@ -47,15 +47,6 @@ pluginManagement {
   }
 }
 
-dependencyResolutionManagement {
-  repositories {
-    mavenCentral()
-    google()
-    maven { url = uri("https://jitpack.io") }
-    maven { url = uri("${rootProject.projectDir}/maven") }
-  }
-}
-
 includeBuild("build-logic")
 
 include(":app")

@@ -32,7 +32,17 @@ plugins {
   id("convention-extras")
 }
 
-configurations.all {
+/* Won't work if we put this in settings.gradle.kts, because takdev plugin messes with it too much */
+allprojects {
+  repositories {
+    mavenCentral()
+    google()
+    maven { url = uri("https://jitpack.io") }
+    maven { url = uri("${rootProject.projectDir}/maven") }
+  }
+}
+
+configurations.configureEach {
   resolutionStrategy {
     dependencySubstitution {
       substitute(module("net.sf.proguard:proguard-gradle"))
