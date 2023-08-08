@@ -1,9 +1,0 @@
-apply plugin: "com.osacky.doctor"
-
-doctor {
-    javaHome {
-        ensureJavaHomeMatches = false
-        ensureJavaHomeIsSet = true
-        failOnError.set(true)
-    }
-}
