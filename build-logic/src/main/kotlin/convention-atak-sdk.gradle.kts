@@ -30,8 +30,11 @@ val compileOnly by configurations
 val testImplementation by configurations
 val androidTestImplementation by configurations
 
-dependencies {
-  compileOnly("com.atakmap:sdk:${atakVersion}.+")
-  testImplementation("com.atakmap:sdk:${atakVersion}.+")
-  androidTestImplementation("com.atakmap:sdk:${atakVersion}.+")
+/* Fetch these off my local machine! On the TPP, takdev plugin handles this instead */
+if (!project.isPipeline) {
+  dependencies {
+    compileOnly("com.atakmap:sdk:${atakVersion}.+")
+    testImplementation("com.atakmap:sdk:${atakVersion}.+")
+    androidTestImplementation("com.atakmap:sdk:${atakVersion}.+")
+  }
 }
