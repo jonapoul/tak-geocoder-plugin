@@ -12,6 +12,7 @@ plugins {
   id("convention-atak-sdk")
   id("convention-desugaring")
   id("convention-kotlin")
+  id("convention-test")
 }
 
 android {

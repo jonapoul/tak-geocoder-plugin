@@ -5,6 +5,7 @@ plugins {
   id("convention-atak-sdk")
   id("convention-desugaring")
   id("convention-style")
+  id("convention-test")
 }
 
 android {

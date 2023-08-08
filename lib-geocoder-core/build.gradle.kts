@@ -2,6 +2,7 @@ plugins {
   id("convention-android-lib")
   id("convention-atak-sdk")
   id("convention-style")
+  id("convention-test")
 
   id("org.jetbrains.kotlin.plugin.serialization")
 }
