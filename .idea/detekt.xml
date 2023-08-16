@@ -11,8 +11,6 @@
         <option value="$PROJECT_DIR$/detekt.yml" />
       </list>
     </option>
-  </component>
-  <component name="DetektProjectConfiguration">
-    <configPaths>D:\dev\tak-file-manager-plugin\detekt.yml</configPaths>
+    <option name="treatAsErrors" value="true" />
   </component>
 </project>

@@ -40,6 +40,29 @@ Check the [latest release page](https://github.com/jonapoul/tak-geocoder-plugin/
     takReleaseKeyAlias=...
     takReleaseKeyPassword=...
     ```
+1. Create a directory one level above this repo called `maven`, then lay it out like below:
+    ```
+    tak-geocoder-plugin/
+    ├─ ...
+    maven/
+    ├─ com/
+    │  ├─ atakmap/
+    │  │  ├─ sdk/
+    │  │  │  ├─ 4.8.1.21/
+    │  │  │  │  ├─ sdk-4.8.21.jar
+    │  │  │  │  ├─ sdk-4.8.21.pom
+    │  │  │  │  ├─ sdk-4.8.21-javadoc.jar
+    ```
+    This contains the ATAK SDK library for use in this project. The POM file looks like:
+    ```xml
+    <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+        <modelVersion>4.0.0</modelVersion>
+        <groupId>com.atakmap</groupId>
+        <artifactId>sdk</artifactId>
+        <version>4.8.1.21</version>
+        <packaging>jar</packaging>
+    </project>
+    ```
 1. Install a debug/developer version of ATAK matching the version of the plugin. This will have a red overlay at the bottom of the map to tell you that it's a debug build.
 1. Connect your phone to your PC with USB debugging enabled.
 1. Open this project in a terminal and run:

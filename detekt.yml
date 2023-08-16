@@ -5,11 +5,6 @@ complexity:
     ignorePrivate: true
   LongParameterList:
     ignoreDefaultParameters: true
-formatting:
-  Indentation:
-    indentSize: 2
-  MultiLineIfElse:
-    active: false
 exceptions:
   TooGenericExceptionCaught:
     active: false

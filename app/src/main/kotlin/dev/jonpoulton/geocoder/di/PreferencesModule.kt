@@ -5,11 +5,12 @@ package dev.jonpoulton.geocoder.di
 import android.preference.PreferenceManager
 import com.fredporciuncula.flow.preferences.FlowSharedPreferences
 import dev.jonpoulton.geocoder.core.AppContext
+import dev.jonpoulton.geocoder.core.IODispatcher
 import kotlinx.coroutines.CoroutineDispatcher
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val preferencesModule = module {
   factory { PreferenceManager.getDefaultSharedPreferences(get<AppContext>()) }
-  factory { FlowSharedPreferences(get(), get<CoroutineDispatcher>(named(KoinDispatchers.IO))) }
+  factory { FlowSharedPreferences(get(), get<IODispatcher>()) }
 }

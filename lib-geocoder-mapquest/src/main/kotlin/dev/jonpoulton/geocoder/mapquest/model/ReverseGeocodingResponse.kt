@@ -24,13 +24,13 @@ internal data class ReverseSuccessItem(
 
 @Serializable
 internal data class ReverseSuccessLocation(
-  @SerialName("street") val street: String,
-  @SerialName("adminArea6") val neighbourhood: String,
-  @SerialName("adminArea5") val city: String,
-  @SerialName("adminArea4") val county: String,
-  @SerialName("adminArea3") val state: String,
-  @SerialName("adminArea1") val country: String,
-  @SerialName("postalCode") val postalCode: String,
+  @SerialName("street") val street: String?,
+  @SerialName("adminArea6") val neighbourhood: String?,
+  @SerialName("adminArea5") val city: String?,
+  @SerialName("adminArea4") val county: String?,
+  @SerialName("adminArea3") val state: String?,
+  @SerialName("adminArea1") val country: String?,
+  @SerialName("postalCode") val postalCode: String?,
   @SerialName("latLng") val coordinates: MapQuestCoordinates,
   // plus other rubbish
 )

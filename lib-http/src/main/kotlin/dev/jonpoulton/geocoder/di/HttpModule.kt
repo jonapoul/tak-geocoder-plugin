@@ -14,7 +14,7 @@ private const val DEFAULT_TIMEOUT_SECS = 5L
 val httpModule = module {
   factory {
     HttpLoggingInterceptor { message -> Timber.v(message) }
-      .also { it.level = HttpLoggingInterceptor.Level.BODY }
+      .also { logger -> logger.level = HttpLoggingInterceptor.Level.BODY }
   }
 
   single {

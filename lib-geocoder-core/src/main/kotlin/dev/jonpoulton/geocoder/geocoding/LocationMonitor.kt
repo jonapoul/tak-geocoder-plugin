@@ -6,8 +6,8 @@ import com.atakmap.android.user.geocode.GeocodeManager
 import com.atakmap.android.user.geocode.GeocodeManager.Geocoder
 import com.atakmap.android.user.geocode.GeocodeManager.Geocoder2
 import com.atakmap.coremap.maps.coords.GeoPoint
+import dev.jonpoulton.geocoder.core.IODispatcher
 import dev.jonpoulton.geocoder.settings.PluginPreferences
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -22,7 +22,7 @@ class LocationMonitor(
   private val mapView: MapView,
   private val geocodeManager: GeocodeManager,
   private val scope: CoroutineScope,
-  private val io: CoroutineDispatcher,
+  private val io: IODispatcher,
   pluginPreferences: PluginPreferences,
 ) : KoinComponent {
 

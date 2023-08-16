@@ -1,0 +1,22 @@
+ext.isDevKitEnabled = { ->
+    return getProperty("takrepo.url", null) != null
+}
+
+ext.getProperty = { String name, String defValue ->
+    def prop = project.properties[name] ?:
+        getValueFromPropertiesFile(project.rootProject.file("local.properties"), name)
+    return (null == prop) ? defValue : prop
+}
+
+ext.getValueFromPropertiesFile = { File propFile, String key ->
+    if (!propFile.isFile() || !propFile.canRead())
+        return null
+    def prop = new Properties()
+    def reader = propFile.newReader()
+    try {
+        prop.load(reader)
+    } finally {
+        reader.close()
+    }
+    return prop.get(key)
+}

@@ -2,15 +2,13 @@ package dev.jonpoulton.geocoder.core
 
 import android.widget.Toast
 import androidx.annotation.StringRes
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
-import org.koin.core.component.KoinComponent
 
 class Toaster(
   private val appContext: AppContext,
   private val pluginContext: PluginContext,
-  private val main: CoroutineDispatcher,
-) : KoinComponent {
+  private val main: MainDispatcher,
+) {
   fun toast(message: String, length: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(appContext, message, length).show()
   }
