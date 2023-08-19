@@ -7,7 +7,7 @@
         android:description="@string/app_desc"
         android:icon="@drawable/ic_plugin_icon"
         android:label="@string/app_name"
-        android:theme="@style/Theme.Atak.Geocoder"
+        android:theme="@style/Theme.Atak.Common"
         tools:ignore="DataExtractionRules">
 
         <meta-data

@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- TBC -->
+    <string name="plugin_name">Geocoder Plugin</string>
 </resources>

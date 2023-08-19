@@ -6,33 +6,30 @@ import com.atakmap.android.user.geocode.GeocodeManager
 import com.atakmap.android.user.geocode.GeocodeManager.Geocoder
 import com.atakmap.android.user.geocode.GeocodeManager.Geocoder2
 import com.atakmap.coremap.maps.coords.GeoPoint
-import dev.jonpoulton.geocoder.core.IODispatcher
-import dev.jonpoulton.geocoder.settings.PluginPreferences
+import dev.jonpoulton.alakazam.core.IODispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.koin.core.component.KoinComponent
+import kotlinx.coroutines.withContext
 import timber.log.Timber
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class LocationMonitor(
+@Singleton
+class LocationMonitor @Inject constructor(
   private val mapView: MapView,
   private val geocodeManager: GeocodeManager,
   private val scope: CoroutineScope,
   private val io: IODispatcher,
-  pluginPreferences: PluginPreferences,
-) : KoinComponent {
-
+) {
   private val mutableState = MutableStateFlow<GeocodedState>(value = GeocodedState.NoPositionFound)
 
   /* Combining here to force the state flow to emit a new value every time the includeTag setting updates */
-  val geocodedState: Flow<GeocodedState> = combine(
-    mutableState,
-    pluginPreferences.includeTag.asFlow(),
-  ) { state, _ -> state }
+  val geocodedState: Flow<GeocodedState> = mutableState.asStateFlow()
 
   private var loopJob: Job? = null
   private var workingJob: Job? = null
@@ -40,7 +37,7 @@ class LocationMonitor(
   fun startGeocoding() {
     Timber.v("start")
     loopJob?.cancel()
-    loopJob = scope.launch(io) {
+    loopJob = scope.launch {
       while (true) {
         val geocoders = geocodeManager.allGeocoders
         if (geocoders.isNotEmpty()) {
@@ -65,7 +62,7 @@ class LocationMonitor(
   }
 
   @Suppress("ReturnCount")
-  private fun getStateFromPoint(selfPoint: GeoPoint?, geocoder: Geocoder): GeocodedState {
+  private suspend fun getStateFromPoint(selfPoint: GeoPoint?, geocoder: Geocoder): GeocodedState {
     if (selfPoint == null) {
       workingJob?.cancel()
       return GeocodedState.NoPositionFound
@@ -76,8 +73,8 @@ class LocationMonitor(
       return GeocodedState.NotAvailable(geocoder)
     }
 
-    val addresses = geocoder.getLocation(selfPoint) // this will block the thread
-    workingJob?.cancel()
+    val addresses = withContext(io) { geocoder.getLocation(selfPoint) } // this blocks the thread
+    workingJob?.cancel() // address has been fetched, so we're not blocking the thread any more
 
     if (addresses.isNullOrEmpty()) {
       return GeocodedState.Failed("No geocoding results", geocoder)

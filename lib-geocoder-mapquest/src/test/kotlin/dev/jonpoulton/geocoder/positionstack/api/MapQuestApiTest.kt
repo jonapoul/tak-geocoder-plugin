@@ -1,6 +1,6 @@
 package dev.jonpoulton.geocoder.positionstack.api
 
-import dev.jonpoulton.geocoder.core.IBuildConfig
+import dev.jonpoulton.geocoder.core.GeocoderBuildConfig
 import dev.jonpoulton.geocoder.core.TestBuildConfig
 import dev.jonpoulton.geocoder.di.LenientJson
 import dev.jonpoulton.geocoder.di.httpModule
@@ -36,7 +36,7 @@ class MapQuestApiTest {
   val koinTestRule = KoinTestRule.create {
     modules(
       httpModule,
-      module { single<IBuildConfig> { TestBuildConfig } },
+      module { single<GeocoderBuildConfig> { TestBuildConfig } },
     )
   }
 

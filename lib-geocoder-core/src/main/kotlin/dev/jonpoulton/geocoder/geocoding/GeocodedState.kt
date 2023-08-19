@@ -10,6 +10,17 @@ sealed interface GeocodedState {
     val string: String
   }
 
+  data class Tagged(
+    val state: Visible,
+  ) : Visible {
+    override val color = state.color
+    override val string: String
+      get() {
+        val prefix = if (state is HasGeocoder) state.geocoder.title + ":\n" else ""
+        return "$prefix${state.string}"
+      }
+  }
+
   sealed interface HasGeocoder : GeocodedState {
     val geocoder: Geocoder
   }

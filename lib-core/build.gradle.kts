@@ -15,9 +15,13 @@ android {
 }
 
 dependencies {
+  implementation(libs.alakazam.android.core)
+  implementation(libs.alakazam.android.prefs)
+  implementation(libs.alakazam.android.ui.core)
+  implementation(libs.alakazam.kotlin.core)
+  implementation(libs.alakazam.tak.core)
   implementation(libs.flowpreferences)
-  api(libs.koin.android)
-  api(libs.timber)
+  implementation(libs.timber)
 
   testImplementation(project(":lib-test"))
 }

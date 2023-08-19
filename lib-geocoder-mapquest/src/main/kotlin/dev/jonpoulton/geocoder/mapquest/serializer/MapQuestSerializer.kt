@@ -8,14 +8,13 @@ import kotlinx.serialization.json.JsonObject
 
 internal abstract class MapQuestSerializer<T : Any> : BasicResponseSerializer<T>() {
   protected abstract fun handleResultsArray(json: Json, jsonArray: JsonArray): T
-
-  protected abstract fun errorTypeConstructor(): (Int, List<String>) -> T
+  protected abstract val errorTypeConstructor: (Int, List<String>) -> T
 
   final override fun decodeJsonObject(json: Json, jsonObject: JsonObject): T {
     val infoObject = jsonObject["info"] as? JsonObject ?: error("Required info block in $jsonObject")
     val info = json.decodeFromJsonElement(ResponseInfo.serializer(), infoObject)
     if (info.statusCode != 0) {
-      return errorTypeConstructor().invoke(info.statusCode, info.messages)
+      return errorTypeConstructor(info.statusCode, info.messages)
     }
 
     val results = jsonObject["results"] as? JsonArray ?: error("Required results array in $jsonObject")
