@@ -11,7 +11,6 @@ import dev.jonpoulton.geocoder.plugin.R
 
 @Module
 internal class BuildConfigModule(private val pluginContext: PluginContext) {
-
   private val buildConfig = object : GeocoderBuildConfig {
     override val debug = BuildConfig.DEBUG
     override val applicationId = BuildConfig.APPLICATION_ID
@@ -19,7 +18,7 @@ internal class BuildConfigModule(private val pluginContext: PluginContext) {
     override val versionCode = BuildConfig.VERSION_CODE
     override val versionName = BuildConfig.VERSION_NAME
     override val buildTime = BuildConfig.BUILD_TIME
-    override val gitId = TODO("Not yet implemented")
+    override val gitId = BuildConfig.GIT_HASH
     override val manufacturer = Build.MANUFACTURER
     override val model = Build.MODEL
     override val os = Build.VERSION.SDK_INT

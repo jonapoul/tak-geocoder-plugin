@@ -27,6 +27,12 @@ android {
     insertBuildConfigFromLocalProps(key = "MAPQUEST_API_KEY")
 
     buildConfigField(
+      type = "String",
+      name = "GIT_HASH",
+      value = "\"${getVersionName()}\"",
+    )
+
+    buildConfigField(
       type = "java.time.Instant",
       name = "BUILD_TIME",
       value = "java.time.Instant.ofEpochMilli(${System.currentTimeMillis()}L)",
