@@ -66,6 +66,7 @@ val libs = the<LibrariesForLibs>()
 val testImplementation by configurations
 
 dependencies {
+  testImplementation(libs.kotlin.coroutines.core)
   testImplementation(libs.test.alakazam.core)
   testImplementation(libs.test.junit)
   testImplementation(libs.test.kotlin.common)

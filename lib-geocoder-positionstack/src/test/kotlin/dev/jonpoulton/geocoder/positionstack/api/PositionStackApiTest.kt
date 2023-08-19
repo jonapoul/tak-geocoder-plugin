@@ -1,8 +1,6 @@
 package dev.jonpoulton.geocoder.positionstack.api
 
-import dev.jonpoulton.geocoder.core.GeocoderBuildConfig
-import dev.jonpoulton.geocoder.core.TestBuildConfig
-import dev.jonpoulton.geocoder.di.httpModule
+import dev.jonpoulton.alakazam.test.getResourceAsStream
 import dev.jonpoulton.geocoder.geocoding.Coordinates
 import dev.jonpoulton.geocoder.positionstack.model.ErrorContext
 import dev.jonpoulton.geocoder.positionstack.model.ErrorQuery
@@ -14,32 +12,21 @@ import dev.jonpoulton.geocoder.positionstack.model.ReverseSuccessData
 import dev.jonpoulton.geocoder.test.MockWebServerRule
 import dev.jonpoulton.geocoder.test.buildApi
 import dev.jonpoulton.geocoder.test.enqueue
-import dev.jonpoulton.geocoder.test.getResourceJson
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.koin.dsl.module
-import org.koin.test.KoinTestRule
 import kotlin.test.assertEquals
 
 class PositionStackApiTest {
   @get:Rule
   val webServerRule = MockWebServerRule()
 
-  @get:Rule
-  val koinTestRule = KoinTestRule.create {
-    modules(
-      httpModule,
-      module { single<GeocoderBuildConfig> { TestBuildConfig } },
-    )
-  }
-
   private lateinit var api: PositionStackApiWrapper
 
   @Before
   fun before() {
-    api = PositionStackApiWrapper(buildApi(webServerRule, koinTestRule, PositionStackApi::class))
+    api = PositionStackApiWrapper(buildApi(webServerRule))
   }
 
   @Test
@@ -177,6 +164,12 @@ class PositionStackApiTest {
       expected = expected,
       actual = response,
     )
+  }
+
+  private fun getResourceJson(file: String): String {
+    return getResourceAsStream(file)
+      .bufferedReader()
+      .use { it.readText() }
   }
 
   private companion object {

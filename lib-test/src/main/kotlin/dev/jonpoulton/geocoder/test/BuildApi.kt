@@ -1,17 +1,14 @@
 package dev.jonpoulton.geocoder.test
 
-import org.koin.test.KoinTestRule
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import kotlin.reflect.KClass
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
-fun <T : Any> buildApi(
-  mockWebServerRule: MockWebServerRule,
-  koinTestRule: KoinTestRule,
-  apiClass: KClass<T>,
-): T {
-  return koinTestRule.koin
-    .get<Retrofit.Builder>()
-    .baseUrl(mockWebServerRule.server.url(path = "/"))
+inline fun <reified T : Any> buildApi(rule: MockWebServerRule): T {
+  return Retrofit.Builder()
+    .addConverterFactory(ScalarsConverterFactory.create())
+    .client(OkHttpClient())
+    .baseUrl(rule.server.url(path = "/"))
     .build()
-    .create(apiClass.java)
+    .create(T::class.java)
 }
