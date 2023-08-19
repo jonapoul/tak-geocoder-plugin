@@ -21,9 +21,11 @@ spotless = "6.18.0"
 takdev = "2.4.1-debug2"
 
 # Libraries
+alakazam = "3.4.1"
 android-desugaring = "1.1.5"
 androidx-core-ktx = "1.6.0"
 androidx-lifecycle = "2.5.1"
+dagger = "2.47"
 flowpreferences = "1.7.0"
 koin = "3.2.0"
 kotlinx-coroutines = "1.6.3"
@@ -52,9 +54,23 @@ plugin-serialization = { module = "org.jetbrains.kotlin.plugin.serialization:org
 plugin-spotless = { module = "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotless" }
 
 # Libraries
+alakazam-android-core = { module = "dev.jonpoulton.alakazam:android-core", version.ref = "alakazam" }
+alakazam-android-logging = { module = "dev.jonpoulton.alakazam:android-logging", version.ref = "alakazam" }
+alakazam-android-prefs = { module = "dev.jonpoulton.alakazam:android-prefs", version.ref = "alakazam" }
+alakazam-android-ui-core = { module = "dev.jonpoulton.alakazam:android-ui-core", version.ref = "alakazam" }
+alakazam-android-ui-viewBinding = { module = "dev.jonpoulton.alakazam:android-ui-viewbinding", version.ref = "alakazam" }
+alakazam-kotlin-core = { module = "dev.jonpoulton.alakazam:kotlin-core", version.ref = "alakazam" }
+alakazam-kotlin-json = { module = "dev.jonpoulton.alakazam:kotlin-json", version.ref = "alakazam" }
+alakazam-kotlin-time = { module = "dev.jonpoulton.alakazam:kotlin-time", version.ref = "alakazam" }
+alakazam-tak-core = { module = "dev.jonpoulton.alakazam:tak-core", version.ref = "alakazam" }
+alakazam-tak-dagger = { module = "dev.jonpoulton.alakazam:tak-dagger", version.ref = "alakazam" }
+alakazam-tak-plugin = { module = "dev.jonpoulton.alakazam:tak-plugin", version.ref = "alakazam" }
+alakazam-tak-ui = { module = "dev.jonpoulton.alakazam:tak-ui", version.ref = "alakazam" }
 android-desugaring = { module = "com.android.tools:desugar_jdk_libs", version.ref = "android-desugaring" }
 androidx-coreKtx = { module = "androidx.core:core-ktx", version.ref = "androidx-core-ktx" }
 androidx-lifecycleRuntimeKtx = { module = "androidx.core:core-ktx", version.ref = "androidx-core-ktx" }
+dagger-core = { module = "com.google.dagger:dagger", version.ref = "dagger" }
+dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
 flowpreferences = { module = "com.fredporciuncula:flow-preferences", version.ref = "flowpreferences" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
@@ -68,6 +84,7 @@ retrofit-scalars = { module = "com.squareup.retrofit2:converter-scalars", versio
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 
 # Testing
+test-alakazam-core = { module = "dev.jonpoulton.alakazam:testing-core", version.ref = "alakazam" }
 test-junit = { module = "junit:junit", version.ref = "junit" }
 test-koin-junit4 = { module = "io.insert-koin:koin-test-junit4", version.ref = "koin" }
 test-kotlin-common = { module = "org.jetbrains.kotlin:kotlin-test-common", version.ref = "kotlin" }
