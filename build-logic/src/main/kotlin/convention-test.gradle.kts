@@ -72,6 +72,7 @@ dependencies {
   testImplementation(libs.test.kotlin.common)
   testImplementation(libs.test.kotlin.coroutines)
   testImplementation(libs.test.kotlin.junit)
+  testImplementation(libs.test.mockk)
   testImplementation(libs.test.okhttp.webserver)
   testImplementation(libs.test.timber)
   testImplementation(libs.test.turbine)
