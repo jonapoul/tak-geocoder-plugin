@@ -22,6 +22,8 @@ buildscript {
     mavenCentral()
     google()
     maven { url = uri("https://jitpack.io") }
+    maven { url = uri("${rootProject.projectDir}/../maven") }
+
     if (isPipeline) {
       println("Using pipeline, declaring takRepo maven repo")
       val takrepoUrl = getStringProperty(key = "takrepoUrl")
@@ -35,9 +37,6 @@ buildscript {
           password = takrepoPassword
         }
       }
-    } else {
-      println("Not using pipeline, declaring local maven repo")
-      maven { url = uri("${rootProject.projectDir}/maven") }
     }
   }
 
@@ -77,6 +76,7 @@ allprojects {
     google()
     maven { url = uri("https://jitpack.io") }
     maven { url = uri("${rootProject.projectDir}/../maven") }
+    mavenLocal()
   }
 }
 

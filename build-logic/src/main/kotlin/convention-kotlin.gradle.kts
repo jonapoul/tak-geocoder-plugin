@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 import org.gradle.accessors.dm.LibrariesForLibs
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -18,5 +20,5 @@ val implementation by configurations
 
 dependencies {
   implementation(libs.kotlin.stdlib)
-  implementation(libs.kotlin.coroutines)
+  implementation(libs.kotlin.coroutines.core)
 }

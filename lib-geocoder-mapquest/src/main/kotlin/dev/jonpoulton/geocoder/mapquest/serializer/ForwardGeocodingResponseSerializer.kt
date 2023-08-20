@@ -9,8 +9,7 @@ import kotlinx.serialization.json.JsonArray
 
 internal object ForwardGeocodingResponseSerializer : MapQuestSerializer<ForwardGeocodingResponse>() {
   override val descriptor = buildClassSerialDescriptor(serialName = "ForwardGeocodingResponse")
-
-  override fun errorTypeConstructor() = ForwardGeocodingResponse::Error
+  override val errorTypeConstructor = ForwardGeocodingResponse::Error
 
   override fun handleResultsArray(json: Json, jsonArray: JsonArray): ForwardGeocodingResponse {
     val serializer = ForwardSuccessItem.serializer()

@@ -4,10 +4,10 @@ import android.location.Address
 import android.net.ConnectivityManager
 import com.atakmap.coremap.maps.coords.GeoBounds
 import com.atakmap.coremap.maps.coords.GeoPoint
-import dev.jonpoulton.geocoder.core.PluginContext
+import dev.jonpoulton.alakazam.tak.core.PluginContext
 import dev.jonpoulton.geocoder.core.isNetworkAvailable
-import dev.jonpoulton.geocoder.di.W3W_API_URL
 import dev.jonpoulton.geocoder.geocoding.CustomHttpGeocoder
+import dev.jonpoulton.geocoder.w3w.W3W_API_URL
 import dev.jonpoulton.geocoder.w3w.api.WhatThreeWordsApi
 import dev.jonpoulton.geocoder.w3w.api.WhatThreeWordsApiWrapper
 import dev.jonpoulton.geocoder.w3w.model.CoordinatesRequest
@@ -16,13 +16,14 @@ import dev.jonpoulton.geocoder.what3words.R
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import timber.log.Timber
+import javax.inject.Inject
 import java.util.Locale
 
-internal class WhatThreeWordsGeocoder(
-  private val pluginContext: PluginContext,
-  private val prefs: WhatThreeWordsPreferences,
-  private val api: WhatThreeWordsApi,
-  private val connectivityManager: ConnectivityManager,
+internal class WhatThreeWordsGeocoder @Inject constructor(
+    private val pluginContext: PluginContext,
+    private val prefs: WhatThreeWordsPreferences,
+    private val api: WhatThreeWordsApi,
+    private val connectivityManager: ConnectivityManager,
 ) : CustomHttpGeocoder {
   override fun getUniqueIdentifier(): String = "what-three-words"
 

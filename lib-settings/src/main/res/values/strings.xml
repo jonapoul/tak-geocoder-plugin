@@ -18,10 +18,6 @@
     <string name="mapquest_key_title">MapQuest API Key</string>
     <string name="mapquest_key_summary">Used to authenticate for MapQuest geocoding. If empty, the MapQuest geocoder is disabled.</string>
 
-    <string name="about_title">About…</string>
-
-    <string name="about_version">Version</string>
-    <string name="about_build_time">Build Time</string>
-    <string name="about_source">Source Code</string>
-    <string name="about_source_url" translatable="false">jonapoul/tak-geocoder-plugin</string>
+    <string name="about_source_name" translatable="false">jonapoul/tak-geocoder-plugin</string>
+    <string name="about_source_url" translatable="false">https://github.com/jonapoul/tak-geocoder-plugin</string>
 </resources>

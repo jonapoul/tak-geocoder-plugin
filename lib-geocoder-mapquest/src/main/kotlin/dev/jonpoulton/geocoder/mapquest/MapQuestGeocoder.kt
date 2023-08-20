@@ -4,9 +4,8 @@ import android.location.Address
 import android.net.ConnectivityManager
 import com.atakmap.coremap.maps.coords.GeoBounds
 import com.atakmap.coremap.maps.coords.GeoPoint
-import dev.jonpoulton.geocoder.core.PluginContext
+import dev.jonpoulton.alakazam.tak.core.PluginContext
 import dev.jonpoulton.geocoder.core.isNetworkAvailable
-import dev.jonpoulton.geocoder.di.MAP_QUEST_API_URL
 import dev.jonpoulton.geocoder.geocoding.CustomHttpGeocoder
 import dev.jonpoulton.geocoder.mapquest.api.MapQuestApi
 import dev.jonpoulton.geocoder.mapquest.api.MapQuestApiWrapper
@@ -22,6 +21,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import timber.log.Timber
 import java.util.Locale
+import javax.inject.Inject
 
 /**
  * This is an alternative to the built-in MapQuest Geocoder implementation, which doesn't work as of ATAK 4.8.1.
@@ -30,7 +30,7 @@ import java.util.Locale
  *
  * Check [com.atakmap.android.user.geocode.GeocoderNominatim] for the faulty built-in implementation.
  */
-internal class MapQuestGeocoder(
+internal class MapQuestGeocoder @Inject constructor(
   private val pluginContext: PluginContext,
   private val prefs: MapQuestPreferences,
   private val api: MapQuestApi,

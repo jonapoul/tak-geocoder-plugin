@@ -46,3 +46,7 @@ android {
     resources.excludes.add("META-INF/*")
   }
 }
+
+dependencies {
+  implementation(libs.kotlin.coroutines.android)
+}

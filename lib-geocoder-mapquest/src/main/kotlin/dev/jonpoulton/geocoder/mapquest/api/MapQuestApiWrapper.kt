@@ -1,7 +1,7 @@
 package dev.jonpoulton.geocoder.mapquest.api
 
 import dev.jonpoulton.geocoder.core.runBlockingOrNull
-import dev.jonpoulton.geocoder.di.LenientJson
+import dev.jonpoulton.geocoder.http.LenientJson
 import dev.jonpoulton.geocoder.mapquest.model.ForwardGeocodingRequest
 import dev.jonpoulton.geocoder.mapquest.model.ForwardGeocodingResponse
 import dev.jonpoulton.geocoder.mapquest.model.MapQuestApiKey

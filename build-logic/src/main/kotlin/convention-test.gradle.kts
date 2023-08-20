@@ -1,5 +1,8 @@
+@file:Suppress("UnstableApiUsage")
+
 import kotlinx.kover.gradle.plugin.dsl.AggregationType
 import kotlinx.kover.gradle.plugin.dsl.MetricType
+import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 
 plugins {
@@ -33,7 +36,7 @@ val excludeClasses = listOf(
 
 koverReport {
   filters {
-    includes { packages("dev.jonpoulton.*") }
+    includes { packages("dev.jonpoulton") }
     excludes { classes(excludeClasses) }
   }
 
@@ -47,7 +50,7 @@ koverReport {
       rule {
         isEnabled = true
         filters {
-          includes { packages("dev.jonpoulton.kot") }
+          includes { packages("dev.jonpoulton") }
         }
         bound {
           minValue = 60
@@ -57,6 +60,22 @@ koverReport {
       }
     }
   }
+}
+
+val libs = the<LibrariesForLibs>()
+val testImplementation by configurations
+
+dependencies {
+  testImplementation(libs.kotlin.coroutines.core)
+  testImplementation(libs.test.alakazam.core)
+  testImplementation(libs.test.junit)
+  testImplementation(libs.test.kotlin.common)
+  testImplementation(libs.test.kotlin.coroutines)
+  testImplementation(libs.test.kotlin.junit)
+  testImplementation(libs.test.mockk)
+  testImplementation(libs.test.okhttp.webserver)
+  testImplementation(libs.test.timber)
+  testImplementation(libs.test.turbine)
 }
 
 if (project.name != "app") {

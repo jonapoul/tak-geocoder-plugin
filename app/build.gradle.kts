@@ -4,11 +4,12 @@ import com.android.build.api.dsl.DefaultConfig
 import com.atakmap.gradle.takdev.TakDevPlugin
 
 plugins {
+  kotlin("android")
+  kotlin("kapt")
   id("com.android.application")
-  id("kotlin-android")
-  id("kotlin-kapt")
   id("atak-takdev-plugin")
   id("convention-atak-sdk")
+  id("convention-dagger")
   id("convention-desugaring")
   id("convention-kotlin")
   id("convention-test")
@@ -24,6 +25,12 @@ android {
     insertBuildConfigFromLocalProps(key = "W3W_API_KEY")
     insertBuildConfigFromLocalProps(key = "POSITIONSTACK_API_KEY")
     insertBuildConfigFromLocalProps(key = "MAPQUEST_API_KEY")
+
+    buildConfigField(
+      type = "String",
+      name = "GIT_HASH",
+      value = "\"${getVersionName()}\"",
+    )
 
     buildConfigField(
       type = "java.time.Instant",
@@ -151,8 +158,14 @@ dependencies {
     ":lib-settings",
   ).map(::project).forEach(::implementation)
 
-  implementation(libs.koin.android)
-  implementation(libs.koin.core)
+  implementation(libs.alakazam.android.core)
+  implementation(libs.alakazam.kotlin.core)
+  implementation(libs.alakazam.kotlin.time)
+  implementation(libs.alakazam.tak.core)
+  implementation(libs.alakazam.tak.dagger)
+  implementation(libs.alakazam.tak.plugin)
+  implementation(libs.alakazam.tak.ui)
+
   implementation(libs.flowpreferences)
   implementation(libs.timber)
 

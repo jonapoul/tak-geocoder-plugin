@@ -1,17 +1,20 @@
 package dev.jonpoulton.geocoder
 
 import com.atakmap.android.user.geocode.GeocodeManager
-import dev.jonpoulton.geocoder.core.collectFlow
+import dev.jonpoulton.alakazam.core.collectFlow
 import dev.jonpoulton.geocoder.geocoding.CustomHttpGeocoder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.combine
 import timber.log.Timber
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class GeocoderRegistrar(
+@Singleton
+class GeocoderRegistrar @Inject constructor(
   private val scope: CoroutineScope,
   private val geocodeManager: GeocodeManager,
-  private val geocoders: List<CustomHttpGeocoder>,
+  private val geocoders: Set<@JvmSuppressWildcards CustomHttpGeocoder>,
 ) {
   private var job: Job? = null
 

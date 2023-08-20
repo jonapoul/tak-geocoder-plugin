@@ -4,10 +4,20 @@ import com.atakmap.android.user.geocode.GeocodeManager.Geocoder
 import gov.tak.platform.graphics.Color
 
 sealed interface GeocodedState {
-
   sealed interface Visible : GeocodedState {
     val color: Int
     val string: String
+  }
+
+  data class Tagged(
+    val state: Visible,
+  ) : Visible {
+    override val color = state.color
+    override val string: String
+      get() {
+        val prefix = if (state is HasGeocoder) state.geocoder.title + ":\n" else ""
+        return "$prefix${state.string}"
+      }
   }
 
   sealed interface HasGeocoder : GeocodedState {
@@ -38,14 +48,18 @@ sealed interface GeocodedState {
   }
 
   object NoGeocoders : Visible {
-    override val color: Int = Color.parseColor("#FF8000") // Orange
+    override val color: Int = Orange
     override val string: String = "No registered geocoders"
   }
 
   data class NotAvailable(
     override val geocoder: Geocoder,
   ) : Visible, HasGeocoder {
-    override val color: Int = Color.parseColor("#FF8000") // Orange
+    override val color: Int = Orange
     override val string: String = "Geocoding not supported"
+  }
+
+  companion object {
+    val Orange = Color.parseColor("#FF8000")
   }
 }

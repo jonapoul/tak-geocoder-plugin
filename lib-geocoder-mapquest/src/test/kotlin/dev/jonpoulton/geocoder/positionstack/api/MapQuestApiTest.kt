@@ -1,11 +1,8 @@
 package dev.jonpoulton.geocoder.positionstack.api
 
-import dev.jonpoulton.geocoder.core.IBuildConfig
-import dev.jonpoulton.geocoder.core.TestBuildConfig
-import dev.jonpoulton.geocoder.di.LenientJson
-import dev.jonpoulton.geocoder.di.httpModule
+import dev.jonpoulton.alakazam.test.getResourceAsStream
+import dev.jonpoulton.geocoder.http.LenientJson
 import dev.jonpoulton.geocoder.geocoding.Coordinates
-import dev.jonpoulton.geocoder.mapquest.api.MapQuestApi
 import dev.jonpoulton.geocoder.mapquest.api.MapQuestApiWrapper
 import dev.jonpoulton.geocoder.mapquest.model.ForwardGeocodingRequest
 import dev.jonpoulton.geocoder.mapquest.model.ForwardGeocodingResponse
@@ -18,13 +15,10 @@ import dev.jonpoulton.geocoder.mapquest.model.ReverseSuccessLocation
 import dev.jonpoulton.geocoder.test.MockWebServerRule
 import dev.jonpoulton.geocoder.test.buildApi
 import dev.jonpoulton.geocoder.test.enqueue
-import dev.jonpoulton.geocoder.test.getResourceJson
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.koin.dsl.module
-import org.koin.test.KoinTestRule
 import java.nio.charset.Charset
 import kotlin.test.assertEquals
 
@@ -32,19 +26,11 @@ class MapQuestApiTest {
   @get:Rule
   val webServerRule = MockWebServerRule()
 
-  @get:Rule
-  val koinTestRule = KoinTestRule.create {
-    modules(
-      httpModule,
-      module { single<IBuildConfig> { TestBuildConfig } },
-    )
-  }
-
   private lateinit var api: MapQuestApiWrapper
 
   @Before
   fun before() {
-    api = MapQuestApiWrapper(buildApi(webServerRule, koinTestRule, MapQuestApi::class))
+    api = MapQuestApiWrapper(buildApi(webServerRule))
   }
 
   @Test
@@ -175,6 +161,12 @@ class MapQuestApiTest {
       expected = expected,
       actual = response,
     )
+  }
+
+  private fun getResourceJson(file: String): String {
+    return getResourceAsStream(file)
+      .bufferedReader()
+      .use { it.readText() }
   }
 
   private companion object {

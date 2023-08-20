@@ -4,9 +4,8 @@ import android.location.Address
 import android.net.ConnectivityManager
 import com.atakmap.coremap.maps.coords.GeoBounds
 import com.atakmap.coremap.maps.coords.GeoPoint
-import dev.jonpoulton.geocoder.core.PluginContext
+import dev.jonpoulton.alakazam.tak.core.PluginContext
 import dev.jonpoulton.geocoder.core.isNetworkAvailable
-import dev.jonpoulton.geocoder.di.POSITION_STACK_API_URL
 import dev.jonpoulton.geocoder.geocoding.Coordinates
 import dev.jonpoulton.geocoder.geocoding.CustomHttpGeocoder
 import dev.jonpoulton.geocoder.positionstack.api.PositionStackApi
@@ -19,8 +18,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import timber.log.Timber
 import java.util.Locale
+import javax.inject.Inject
 
-internal class PositionStackGeocoder(
+internal class PositionStackGeocoder @Inject constructor(
   private val pluginContext: PluginContext,
   private val prefs: PositionStackPreferences,
   private val api: PositionStackApi,

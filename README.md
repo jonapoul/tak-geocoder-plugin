@@ -125,6 +125,8 @@ Then import this preference file into ATAK in the normal way.
 - If you attempt to reverse-geocode from the Coordinate Entry dialog with any of the custom geocoders, nothing will happen because they haven't been set up to do reverse geocoding (yet?)
 
 ## TODO
+- display address of map centre (@spoof discord)
+    - optional setting, or in bottom left corner or something
 - configurable refresh period
 - add caching to avoid wasting API calls?
 - make HTTPS configurable for PositionStack

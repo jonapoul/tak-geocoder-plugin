@@ -20,6 +20,7 @@ configurations.configureEach {
   exclude(group = "androidx.lifecycle", module = "lifecycle-runtime")
   exclude(group = "androidx.lifecycle", module = "lifecycle-viewmodel")
   exclude(group = "androidx.lifecycle", module = "lifecycle-viewmodel-savedstate")
+  exclude(group = "androidx.preference", module = "preference")
   exclude(group = "androidx.savedstate", module = "savedstate")
 }
 

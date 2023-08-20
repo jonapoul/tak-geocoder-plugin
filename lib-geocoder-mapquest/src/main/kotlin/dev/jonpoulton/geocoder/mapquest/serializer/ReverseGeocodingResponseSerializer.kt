@@ -8,8 +8,7 @@ import kotlinx.serialization.json.JsonArray
 
 internal object ReverseGeocodingResponseSerializer : MapQuestSerializer<ReverseGeocodingResponse>() {
   override val descriptor = buildClassSerialDescriptor(serialName = "ReverseGeocodingResponse")
-
-  override fun errorTypeConstructor() = ReverseGeocodingResponse::Error
+  override val errorTypeConstructor = ReverseGeocodingResponse::Error
 
   override fun handleResultsArray(json: Json, jsonArray: JsonArray): ReverseGeocodingResponse {
     val serializer = ReverseSuccessItem.serializer()
