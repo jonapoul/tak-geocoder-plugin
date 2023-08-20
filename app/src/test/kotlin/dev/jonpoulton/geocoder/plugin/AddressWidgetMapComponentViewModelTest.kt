@@ -3,7 +3,7 @@ package dev.jonpoulton.geocoder.plugin
 import app.cash.turbine.test
 import com.atakmap.android.user.geocode.GeocodeManager.Geocoder
 import dev.jonpoulton.geocoder.geocoding.GeocodedState
-import dev.jonpoulton.geocoder.geocoding.LocationMonitor
+import dev.jonpoulton.geocoder.geocoding.SelfLocationMonitor
 import dev.jonpoulton.geocoder.settings.PluginPreferences
 import gov.tak.platform.graphics.Color
 import io.mockk.every
@@ -17,12 +17,12 @@ import org.junit.Rule
 import org.junit.Test
 import kotlin.test.assertEquals
 
-class WidgetOverlayMapComponentViewModelTest {
+class AddressWidgetMapComponentViewModelTest {
   @get:Rule
   val mockkRule = MockKRule(this)
 
   @MockK
-  private lateinit var locationMonitor: LocationMonitor
+  private lateinit var selfLocationMonitor: SelfLocationMonitor
 
   @MockK
   private lateinit var pluginPreferences: PluginPreferences
@@ -30,13 +30,13 @@ class WidgetOverlayMapComponentViewModelTest {
   @MockK
   private lateinit var mockGeocoder: Geocoder
 
-  private lateinit var viewModel: WidgetOverlayMapComponentViewModel
+  private lateinit var viewModel: AddressWidgetMapComponentViewModel
 
   @Before
   fun before() {
     every { mockGeocoder.title } returns GeocoderTitle
-    viewModel = WidgetOverlayMapComponentViewModel(
-      locationMonitor = locationMonitor,
+    viewModel = AddressWidgetMapComponentViewModel(
+      selfLocationMonitor = selfLocationMonitor,
       pluginPreferences = pluginPreferences,
     )
   }
@@ -142,7 +142,7 @@ class WidgetOverlayMapComponentViewModelTest {
   }
 
   private fun setGeocodedState(state: GeocodedState) {
-    every { locationMonitor.geocodedState } returns flowOf(state)
+    every { selfLocationMonitor.geocodedState } returns flowOf(state)
   }
 
   private companion object {

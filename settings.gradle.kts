@@ -8,6 +8,8 @@ include(":lib-geocoder-positionstack")
 include(":lib-geocoder-what3words")
 include(":lib-http")
 include(":lib-settings")
+include(":lib-widget-mapcentre")
+
 include(":lib-test")
 
 // https://docs.gradle.org/current/userguide/declaring_dependencies.html#sec:type-safe-project-accessors

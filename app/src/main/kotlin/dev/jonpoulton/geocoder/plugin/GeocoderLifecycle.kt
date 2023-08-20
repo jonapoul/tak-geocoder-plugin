@@ -10,6 +10,7 @@ import dev.jonpoulton.alakazam.core.getCompatDrawable
 import dev.jonpoulton.alakazam.tak.core.PluginContext
 import dev.jonpoulton.alakazam.tak.plugin.CommonLifecycle
 import dev.jonpoulton.alakazam.tak.plugin.CommonTree
+import dev.jonpoulton.geocoder.centre.MapCentreWidgetMapComponent
 import dev.jonpoulton.geocoder.di.DependencyGraph
 import dev.jonpoulton.geocoder.di.GeocoderDependencyGraph
 import dev.jonpoulton.geocoder.di.viewModels
@@ -21,7 +22,8 @@ class GeocoderLifecycle(context: Context) : CommonLifecycle() {
   override val mapComponents = emptyList<MapComponent>() // no UI!
   override val timberTree = CommonTree(prefix = "GEOCODER")
 
-  private var widgetMapComponent: WidgetOverlayMapComponent? = null
+  private var addressWidgetMapComponent: AddressWidgetMapComponent? = null
+  private var mapCentreWidgetMapComponent: MapCentreWidgetMapComponent? = null
 
   @Suppress("DEPRECATION")
   override fun onCreate(activity: Activity, mv: transapps.mapi.MapView) {
@@ -46,16 +48,19 @@ class GeocoderLifecycle(context: Context) : CommonLifecycle() {
       ),
     )
 
-    /* Register the widget */
-    widgetMapComponent = WidgetOverlayMapComponent()
-    mapView.mapActivity.registerMapComponent(widgetMapComponent)
+    /* Register the widgets */
+    addressWidgetMapComponent = AddressWidgetMapComponent(injector = DependencyGraph)
+    mapCentreWidgetMapComponent = MapCentreWidgetMapComponent(injector = DependencyGraph)
+    mapView.mapActivity.registerMapComponent(addressWidgetMapComponent)
+    mapView.mapActivity.registerMapComponent(mapCentreWidgetMapComponent)
   }
 
   override fun onDestroy() {
     super.onDestroy()
     viewModel.tearDown()
     ToolsPreferenceFragment.unregister(GeocoderSettingsFragment.KEY)
-    mapView.mapActivity.unregisterMapComponent(widgetMapComponent)
+    mapView.mapActivity.unregisterMapComponent(addressWidgetMapComponent)
+    mapView.mapActivity.unregisterMapComponent(mapCentreWidgetMapComponent)
   }
 
   private val MapView.mapActivity: MapActivity

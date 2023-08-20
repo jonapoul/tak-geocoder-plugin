@@ -155,6 +155,7 @@ dependencies {
     ":lib-geocoder-mapquest",
     ":lib-geocoder-positionstack",
     ":lib-geocoder-what3words",
+    ":lib-widget-mapcentre",
     ":lib-settings",
   ).map(::project).forEach(::implementation)
 
