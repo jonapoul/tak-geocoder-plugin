@@ -6,6 +6,7 @@ import dev.jonpoulton.geocoder.geocoding.LocationMonitor
 import dev.jonpoulton.geocoder.settings.PluginPreferences
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChanged
 import javax.inject.Inject
 
 class WidgetOverlayMapComponentViewModel @Inject constructor(
@@ -21,5 +22,5 @@ class WidgetOverlayMapComponentViewModel @Inject constructor(
         state is GeocodedState.Visible && includeTag -> GeocodedState.Tagged(state)
         else -> state
       }
-    }
+    }.distinctUntilChanged()
 }

@@ -15,7 +15,7 @@ internal class PositionStackPreferences @Inject constructor(
   buildConfig: GeocoderBuildConfig,
 ) : Initializable {
   private val default = buildConfig.positionStackApiKey?.let(::PositionStackApiKey)
-  private val apiKeyPrefPair = PrefPair<PositionStackApiKey?>(key = "positionStackApiKey", default = null)
+  private val apiKeyPrefPair = PrefPair<PositionStackApiKey?>(key = "GEOCODER_positionStackApiKey", default = null)
 
   val apiKey: Preference<PositionStackApiKey?> = flowPrefs.getNullableObject(apiKeyPrefPair, ApiKeySerializer)
 

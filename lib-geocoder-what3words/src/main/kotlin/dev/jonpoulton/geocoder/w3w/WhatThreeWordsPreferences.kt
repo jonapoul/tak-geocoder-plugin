@@ -15,7 +15,7 @@ internal class WhatThreeWordsPreferences @Inject constructor(
   buildConfig: GeocoderBuildConfig,
 ) : Initializable {
   private val default = buildConfig.w3wApiKey?.let(::WhatThreeWordsApiKey)
-  private val apiKeyPrefPair = PrefPair<WhatThreeWordsApiKey?>(key = "w3wApiKey", default = null)
+  private val apiKeyPrefPair = PrefPair<WhatThreeWordsApiKey?>(key = "GEOCODER_w3wApiKey", default = null)
 
   val apiKey: Preference<WhatThreeWordsApiKey?> = flowPrefs.getNullableObject(apiKeyPrefPair, ApiKeySerializer)
 

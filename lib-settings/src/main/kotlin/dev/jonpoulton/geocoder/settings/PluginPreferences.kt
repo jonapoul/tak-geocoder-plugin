@@ -10,6 +10,6 @@ class PluginPreferences @Inject constructor(flowPrefs: FlowSharedPreferences) {
   val includeTag: Preference<Boolean> = flowPrefs.getBoolean(INCLUDE_TAG)
 
   companion object {
-    val INCLUDE_TAG = PrefPair(key = "includeTag", default = false)
+    val INCLUDE_TAG = PrefPair(key = "GEOCODER_includeTag", default = false)
   }
 }

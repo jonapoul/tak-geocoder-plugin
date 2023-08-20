@@ -15,7 +15,7 @@ internal class MapQuestPreferences @Inject constructor(
   buildConfig: GeocoderBuildConfig,
 ) : Initializable {
   private val default = buildConfig.mapQuestApiKey?.let(::MapQuestApiKey)
-  private val apiKeyPrefPair = PrefPair<MapQuestApiKey?>(key = "mapQuestApiKey", default = null)
+  private val apiKeyPrefPair = PrefPair<MapQuestApiKey?>(key = "GEOCODER_mapQuestApiKey", default = null)
 
   val apiKey: Preference<MapQuestApiKey?> = flowPrefs.getNullableObject(apiKeyPrefPair, ApiKeySerializer)
 
