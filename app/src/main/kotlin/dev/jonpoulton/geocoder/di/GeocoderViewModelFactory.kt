@@ -11,12 +11,12 @@ import javax.inject.Singleton
 
 @Singleton
 class GeocoderViewModelFactory @Inject constructor(
-  mapComponent: Provider<GeocoderLifecycleViewModel>,
+  lifecycle: Provider<GeocoderLifecycleViewModel>,
   widget: Provider<WidgetOverlayMapComponentViewModel>,
   settings: Provider<GeocoderSettingsViewModel>,
 ) : DaggerViewModelFactory() {
   override val providers = mapOf<Class<out ViewModel>, Provider<out ViewModel>>(
-    GeocoderLifecycleViewModel::class.java to mapComponent,
+    GeocoderLifecycleViewModel::class.java to lifecycle,
     WidgetOverlayMapComponentViewModel::class.java to widget,
     GeocoderSettingsViewModel::class.java to settings,
   )
