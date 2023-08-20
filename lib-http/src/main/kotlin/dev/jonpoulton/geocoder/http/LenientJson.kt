@@ -1,4 +1,4 @@
-package dev.jonpoulton.geocoder.di
+package dev.jonpoulton.geocoder.http
 
 import kotlinx.serialization.json.Json
 

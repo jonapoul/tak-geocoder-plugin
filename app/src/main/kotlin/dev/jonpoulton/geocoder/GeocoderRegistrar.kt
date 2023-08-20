@@ -14,7 +14,7 @@ import javax.inject.Singleton
 class GeocoderRegistrar @Inject constructor(
   private val scope: CoroutineScope,
   private val geocodeManager: GeocodeManager,
-  private val geocoders: List<CustomHttpGeocoder>,
+  private val geocoders: Set<@JvmSuppressWildcards CustomHttpGeocoder>,
 ) {
   private var job: Job? = null
 
