@@ -1,4 +1,4 @@
-package dev.jonpoulton.geocoder.centre
+package dev.jonpoulton.geocoder.widget.centre
 
 import com.fredporciuncula.flow.preferences.FlowSharedPreferences
 import com.fredporciuncula.flow.preferences.Preference

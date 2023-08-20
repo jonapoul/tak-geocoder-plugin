@@ -10,11 +10,12 @@ import dev.jonpoulton.alakazam.core.getCompatDrawable
 import dev.jonpoulton.alakazam.tak.core.PluginContext
 import dev.jonpoulton.alakazam.tak.plugin.CommonLifecycle
 import dev.jonpoulton.alakazam.tak.plugin.CommonTree
-import dev.jonpoulton.geocoder.centre.MapCentreWidgetMapComponent
 import dev.jonpoulton.geocoder.di.DependencyGraph
 import dev.jonpoulton.geocoder.di.GeocoderDependencyGraph
 import dev.jonpoulton.geocoder.di.viewModels
 import dev.jonpoulton.geocoder.settings.GeocoderSettingsFragment
+import dev.jonpoulton.geocoder.widget.centre.MapCentreWidgetMapComponent
+import dev.jonpoulton.geocoder.widget.self.SelfMarkerWidgetMapComponent
 
 class GeocoderLifecycle(context: Context) : CommonLifecycle() {
   private val viewModel by viewModels<GeocoderLifecycleViewModel>()
@@ -22,7 +23,7 @@ class GeocoderLifecycle(context: Context) : CommonLifecycle() {
   override val mapComponents = emptyList<MapComponent>() // no UI!
   override val timberTree = CommonTree(prefix = "GEOCODER")
 
-  private var addressWidgetMapComponent: AddressWidgetMapComponent? = null
+  private var selfMarkerWidgetMapComponent: SelfMarkerWidgetMapComponent? = null
   private var mapCentreWidgetMapComponent: MapCentreWidgetMapComponent? = null
 
   @Suppress("DEPRECATION")
@@ -49,9 +50,9 @@ class GeocoderLifecycle(context: Context) : CommonLifecycle() {
     )
 
     /* Register the widgets */
-    addressWidgetMapComponent = AddressWidgetMapComponent(injector = DependencyGraph)
+    selfMarkerWidgetMapComponent = SelfMarkerWidgetMapComponent(injector = DependencyGraph)
     mapCentreWidgetMapComponent = MapCentreWidgetMapComponent(injector = DependencyGraph)
-    mapView.mapActivity.registerMapComponent(addressWidgetMapComponent)
+    mapView.mapActivity.registerMapComponent(selfMarkerWidgetMapComponent)
     mapView.mapActivity.registerMapComponent(mapCentreWidgetMapComponent)
   }
 
@@ -59,7 +60,7 @@ class GeocoderLifecycle(context: Context) : CommonLifecycle() {
     super.onDestroy()
     viewModel.tearDown()
     ToolsPreferenceFragment.unregister(GeocoderSettingsFragment.KEY)
-    mapView.mapActivity.unregisterMapComponent(addressWidgetMapComponent)
+    mapView.mapActivity.unregisterMapComponent(selfMarkerWidgetMapComponent)
     mapView.mapActivity.unregisterMapComponent(mapCentreWidgetMapComponent)
   }
 

@@ -3,8 +3,9 @@ package dev.jonpoulton.geocoder.plugin
 import app.cash.turbine.test
 import com.atakmap.android.user.geocode.GeocodeManager.Geocoder
 import dev.jonpoulton.geocoder.geocoding.GeocodedState
-import dev.jonpoulton.geocoder.geocoding.SelfLocationMonitor
+import dev.jonpoulton.geocoder.widget.self.SelfMarkerWidgetMapComponentViewModel
 import dev.jonpoulton.geocoder.settings.PluginPreferences
+import dev.jonpoulton.geocoder.widget.self.SelfMarkerLocationMonitor
 import gov.tak.platform.graphics.Color
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -17,12 +18,12 @@ import org.junit.Rule
 import org.junit.Test
 import kotlin.test.assertEquals
 
-class AddressWidgetMapComponentViewModelTest {
+class SelfMarkerWidgetMapComponentViewModelTest {
   @get:Rule
   val mockkRule = MockKRule(this)
 
   @MockK
-  private lateinit var selfLocationMonitor: SelfLocationMonitor
+  private lateinit var locationMonitor: SelfMarkerLocationMonitor
 
   @MockK
   private lateinit var pluginPreferences: PluginPreferences
@@ -30,13 +31,13 @@ class AddressWidgetMapComponentViewModelTest {
   @MockK
   private lateinit var mockGeocoder: Geocoder
 
-  private lateinit var viewModel: AddressWidgetMapComponentViewModel
+  private lateinit var viewModel: SelfMarkerWidgetMapComponentViewModel
 
   @Before
   fun before() {
     every { mockGeocoder.title } returns GeocoderTitle
-    viewModel = AddressWidgetMapComponentViewModel(
-      selfLocationMonitor = selfLocationMonitor,
+    viewModel = SelfMarkerWidgetMapComponentViewModel(
+      locationMonitor = locationMonitor,
       pluginPreferences = pluginPreferences,
     )
   }
@@ -142,7 +143,7 @@ class AddressWidgetMapComponentViewModelTest {
   }
 
   private fun setGeocodedState(state: GeocodedState) {
-    every { selfLocationMonitor.geocodedState } returns flowOf(state)
+    every { locationMonitor.geocodedState } returns flowOf(state)
   }
 
   private companion object {

@@ -9,6 +9,7 @@ include(":lib-geocoder-what3words")
 include(":lib-http")
 include(":lib-settings")
 include(":lib-widget-mapcentre")
+include(":lib-widget-self")
 
 include(":lib-test")
 

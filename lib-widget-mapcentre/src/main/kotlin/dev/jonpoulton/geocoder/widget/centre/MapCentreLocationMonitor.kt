@@ -1,4 +1,4 @@
-package dev.jonpoulton.geocoder.centre
+package dev.jonpoulton.geocoder.widget.centre
 
 import com.atakmap.android.maps.MapView
 import com.atakmap.android.user.geocode.GeocodeManager
@@ -11,11 +11,11 @@ import javax.inject.Singleton
 
 @Singleton
 class MapCentreLocationMonitor @Inject constructor(
-  mapView: MapView,
-  geocodeManager: GeocodeManager,
-  scope: CoroutineScope,
-  io: IODispatcher,
-  private val mapCentrePreferences: MapCentrePreferences,
+    mapView: MapView,
+    geocodeManager: GeocodeManager,
+    scope: CoroutineScope,
+    io: IODispatcher,
+    private val mapCentrePreferences: MapCentrePreferences,
 ) : LocationMonitor(mapView, geocodeManager, scope, io) {
 
   private var mostRecentPoint: GeoPoint? = null

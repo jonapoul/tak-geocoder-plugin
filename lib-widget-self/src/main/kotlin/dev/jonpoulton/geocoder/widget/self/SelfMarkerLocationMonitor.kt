@@ -1,15 +1,16 @@
-package dev.jonpoulton.geocoder.geocoding
+package dev.jonpoulton.geocoder.widget.self
 
 import com.atakmap.android.maps.MapView
 import com.atakmap.android.user.geocode.GeocodeManager
 import com.atakmap.coremap.maps.coords.GeoPoint
 import dev.jonpoulton.alakazam.core.IODispatcher
+import dev.jonpoulton.geocoder.geocoding.LocationMonitor
 import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class SelfLocationMonitor @Inject constructor(
+class SelfMarkerLocationMonitor @Inject constructor(
   mapView: MapView,
   geocodeManager: GeocodeManager,
   scope: CoroutineScope,

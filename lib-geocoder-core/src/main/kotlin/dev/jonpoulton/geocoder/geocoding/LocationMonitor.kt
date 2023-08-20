@@ -56,7 +56,7 @@ abstract class LocationMonitor(
           }
 
           hasAlreadyBeenGeocoded(point) -> {
-            Timber.e("$tag - Point has already been geocoded, not running again!")
+            Timber.e("$tag - Point has already been geocoded, not running again: $point")
           }
 
           else -> {
