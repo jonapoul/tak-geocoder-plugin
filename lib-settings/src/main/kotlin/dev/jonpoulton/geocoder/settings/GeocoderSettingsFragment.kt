@@ -15,16 +15,18 @@ class GeocoderSettingsFragment(
 ) : PluginPreferenceFragment(pluginContext, R.xml.settings, R.string.settings_summary) {
 
   private val viewModel by lazy {
-    injector?.vmFactory()?.create(GeocoderSettingsViewModel::class.java)
+    injector
+      ?.vmFactory()
+      ?.create(GeocoderSettingsViewModel::class.java)
       ?: error("Null injector!")
   }
 
   override fun getSummary(): String = pluginContext.getString(summaryID)
 
   override fun onCreate(savedInstanceState: Bundle?) {
-    Timber.v("showAboutDialog")
+    Timber.v("onCreate")
     super.onCreate(savedInstanceState)
-    findPreference(KEY_ABOUT)?.setOnPreferenceClickListener { viewModel.showAboutDialog() }
+    findPreference(KEY_ABOUT)?.setOnPreferenceClickListener { viewModel.showAboutDialog(activity) }
     findPreference(KEY_ADDRESS_LOOKUP)?.setOnPreferenceClickListener { goToAddressLookupSettings() }
   }
 

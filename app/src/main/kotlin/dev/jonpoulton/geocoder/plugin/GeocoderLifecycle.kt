@@ -26,6 +26,7 @@ class GeocoderLifecycle(context: Context) : CommonLifecycle() {
   @Suppress("DEPRECATION")
   override fun onCreate(activity: Activity, mv: transapps.mapi.MapView) {
     super.onCreate(activity, mv)
+    pluginContext.setTheme(R.style.Theme_Atak_Geocoder)
 
     /* Initialise DI */
     GeocoderDependencyGraph.init(pluginContext, appContext)
