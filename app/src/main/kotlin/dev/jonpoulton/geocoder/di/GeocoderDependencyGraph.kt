@@ -5,34 +5,27 @@ import androidx.lifecycle.ViewModel
 import dagger.BindsInstance
 import dagger.Component
 import dev.jonpoulton.alakazam.core.IBuildConfig
-import dev.jonpoulton.alakazam.tak.core.AppContext
-import dev.jonpoulton.alakazam.tak.core.PluginContext
-import dev.jonpoulton.alakazam.tak.di.AlakazamAtakModule
-import dev.jonpoulton.alakazam.tak.di.AlakazamClockModule
-import dev.jonpoulton.alakazam.tak.di.AlakazamCoroutineModule
-import dev.jonpoulton.alakazam.tak.di.AlakazamPreferencesModule
-import dev.jonpoulton.alakazam.tak.di.AlakazamToasterModule
-import dev.jonpoulton.alakazam.tak.di.DaggerInjector
 import dev.jonpoulton.geocoder.core.GeocoderBuildConfig
 import dev.jonpoulton.geocoder.http.di.HttpModule
 import dev.jonpoulton.geocoder.mapquest.di.MapQuestModule
 import dev.jonpoulton.geocoder.plugin.BuildConfig
 import dev.jonpoulton.geocoder.plugin.R
 import dev.jonpoulton.geocoder.positionstack.di.PositionStackModule
+import dev.jonpoulton.geocoder.tak.AppContext
+import dev.jonpoulton.geocoder.tak.PluginContext
+import dev.jonpoulton.geocoder.tak.di.DaggerInjector
 import javax.inject.Singleton
 
 @Singleton
 @Component(
   modules = [
-    AlakazamAtakModule::class,
-    AlakazamClockModule::class,
-    AlakazamCoroutineModule::class,
-    AlakazamPreferencesModule::class,
-    AlakazamToasterModule::class,
     AtakModule::class,
+    ClockModule::class,
+    CoroutineModule::class,
     HttpModule::class,
     MapQuestModule::class,
     PositionStackModule::class,
+    PreferencesModule::class,
     SystemServiceModule::class,
   ],
 )
@@ -78,6 +71,7 @@ interface GeocoderDependencyGraph : DaggerInjector {
 
 private var NullableInstance: GeocoderDependencyGraph? = null
 
-val DependencyGraph: GeocoderDependencyGraph by lazy { NullableInstance ?: error("Null component instance") }
+val DependencyGraphInstance: GeocoderDependencyGraph by lazy { NullableInstance ?: error("Null component instance") }
 
-inline fun <reified VM : ViewModel> viewModels(): Lazy<VM> = lazy { DependencyGraph.vmFactory().create(VM::class.java) }
+inline fun <reified VM : ViewModel> viewModels(): Lazy<VM> =
+  lazy { DependencyGraphInstance.vmFactory().create(VM::class.java) }

@@ -10,11 +10,11 @@ plugins {
 
 dependencies {
   implementation(project(":lib-core"))
-  api(project(":lib-http"))
-  api(project(":lib-geocoder-core"))
+  implementation(project(":lib-http"))
+  implementation(project(":lib-geocoder-core"))
+  implementation(project(":lib-tak"))
 
   implementation(libs.alakazam.android.prefs)
-  implementation(libs.alakazam.tak.core)
   implementation(libs.flowpreferences)
   implementation(libs.kotlinx.serialization.json)
   implementation(libs.retrofit.core)

@@ -1,9 +1,9 @@
 package dev.jonpoulton.geocoder.plugin
 
 import dev.jonpoulton.alakazam.core.collectFlow
-import dev.jonpoulton.alakazam.tak.ui.TakViewModel
 import dev.jonpoulton.geocoder.GeocoderRegistrar
 import dev.jonpoulton.geocoder.geocoding.Initializable
+import dev.jonpoulton.geocoder.tak.ui.TakViewModel
 import dev.jonpoulton.geocoder.widget.centre.MapCentreLocationMonitor
 import dev.jonpoulton.geocoder.widget.centre.MapCentrePreferences
 import dev.jonpoulton.geocoder.widget.self.SelfMarkerLocationMonitor

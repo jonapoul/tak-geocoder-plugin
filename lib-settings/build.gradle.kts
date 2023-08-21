@@ -11,11 +11,9 @@ plugins {
 
 dependencies {
   implementation(project(":lib-core"))
+  implementation(project(":lib-tak"))
 
   implementation(libs.alakazam.android.prefs)
-  implementation(libs.alakazam.tak.core)
-  implementation(libs.alakazam.tak.dagger)
-  implementation(libs.alakazam.tak.ui)
   implementation(libs.flowpreferences)
   implementation(libs.timber)
 

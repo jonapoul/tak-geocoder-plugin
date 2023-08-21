@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical">
+
+  <include
+    android:id="@+id/version"
+    layout="@layout/dialog_about_item" />
+
+  <include
+    android:id="@+id/build_time"
+    layout="@layout/dialog_about_item" />
+
+  <include
+    android:id="@+id/source"
+    layout="@layout/dialog_about_item" />
+
+</android.widget.LinearLayout>

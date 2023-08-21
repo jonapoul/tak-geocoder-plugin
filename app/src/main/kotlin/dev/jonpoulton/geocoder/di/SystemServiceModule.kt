@@ -4,7 +4,7 @@ import android.net.ConnectivityManager
 import androidx.core.content.getSystemService
 import dagger.Module
 import dagger.Provides
-import dev.jonpoulton.alakazam.tak.core.AppContext
+import dev.jonpoulton.geocoder.tak.AppContext
 
 @Module
 internal class SystemServiceModule {

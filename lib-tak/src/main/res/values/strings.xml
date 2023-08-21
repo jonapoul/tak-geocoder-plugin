@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_title">About</string>
+    <string name="about_version">Version</string>
+    <string name="about_build_time">Build Time</string>
+    <string name="about_source">Source Code</string>
+</resources>

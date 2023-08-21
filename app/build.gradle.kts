@@ -155,18 +155,16 @@ dependencies {
     ":lib-geocoder-mapquest",
     ":lib-geocoder-positionstack",
     ":lib-geocoder-what3words",
+    ":lib-http",
     ":lib-widget-mapcentre",
     ":lib-widget-self",
     ":lib-settings",
+    ":lib-tak",
   ).map(::project).forEach(::implementation)
 
   implementation(libs.alakazam.android.core)
   implementation(libs.alakazam.kotlin.core)
   implementation(libs.alakazam.kotlin.time)
-  implementation(libs.alakazam.tak.core)
-  implementation(libs.alakazam.tak.dagger)
-  implementation(libs.alakazam.tak.plugin)
-  implementation(libs.alakazam.tak.ui)
 
   implementation(libs.flowpreferences)
   implementation(libs.timber)
