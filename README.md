@@ -13,11 +13,13 @@ But also adds custom geocoders, each of which pulls data from public APIs using 
 - [PositionStack](https://positionstack.com/)
 - [MapQuest](https://developer.mapquest.com/documentation/geocoding-api/)
 
+As a bonus, if you have the "Designate the Map Center" setting enabled in ATAK (found under "Settings", then "Basic Display Settings"), the coordinates of the point under the screen's center point (shown as a red cross in the screenshot below) will also be geocoded and displayed in the bottom left of the screen.
+
 Check the [latest release page](https://github.com/jonapoul/tak-geocoder-plugin/releases/latest) to find a ready-to-install APK for ATAK 4.8.1. Let me know if you're looking for any other specific versions.
 
 ## Screenshots
 
-![1](docs/screenshot-1.png)
+![1](docs/screenshot-1.jpg)
 
 | Using What3Words & Geocoder Name | Settings |
 |:--:|:--:|
@@ -125,8 +127,6 @@ Then import this preference file into ATAK in the normal way.
 - If you attempt to reverse-geocode from the Coordinate Entry dialog with any of the custom geocoders, nothing will happen because they haven't been set up to do reverse geocoding (yet?)
 
 ## TODO
-- display address of map centre (@spoof discord)
-    - optional setting, or in bottom left corner or something
 - configurable refresh period
 - add caching to avoid wasting API calls?
 - make HTTPS configurable for PositionStack

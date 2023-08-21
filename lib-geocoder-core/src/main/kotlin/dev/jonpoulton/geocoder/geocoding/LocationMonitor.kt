@@ -16,15 +16,12 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class LocationMonitor @Inject constructor(
-  private val mapView: MapView,
-  private val geocodeManager: GeocodeManager,
-  private val scope: CoroutineScope,
-  private val io: IODispatcher,
+abstract class LocationMonitor(
+  protected val mapView: MapView,
+  protected val geocodeManager: GeocodeManager,
+  protected val scope: CoroutineScope,
+  protected val io: IODispatcher,
 ) {
   private val mutableState = MutableStateFlow<GeocodedState>(value = GeocodedState.NoPositionFound)
 
@@ -33,28 +30,47 @@ class LocationMonitor @Inject constructor(
 
   private var loopJob: Job? = null
   private var workingJob: Job? = null
+  private val tag = this::class.java.simpleName
+
+  protected abstract fun getPoint(): GeoPoint?
+  protected abstract fun refreshPeriodMs(): Long
+  protected open fun hasAlreadyBeenGeocoded(point: GeoPoint?): Boolean = false
+  protected open fun geocodingEnabled(): Boolean = true
 
   fun startGeocoding() {
-    Timber.v("start")
+    Timber.v("$tag - start")
     loopJob?.cancel()
     loopJob = scope.launch {
       while (true) {
-        val geocoders = geocodeManager.allGeocoders
-        if (geocoders.isNotEmpty()) {
-          val geocoder = geocodeManager.selectedGeocoder
-          launchWorkingJob(geocoder)
-          mutableState.value = getStateFromPoint(mapView.selfMarker.point, geocoder)
-        } else {
-          Timber.e("No geocoder implementation on this device!")
-          mutableState.value = GeocodedState.NoGeocoders
+        val point = getPoint()
+        val geocoder = geocodeManager.selectedGeocoder
+        when {
+          geocoder == null -> {
+            Timber.e("$tag - No geocoder implementation on this device!")
+            mutableState.value = GeocodedState.NoGeocoders
+          }
+
+          !geocodingEnabled() -> {
+            Timber.e("$tag - Geocoding disabled")
+            mutableState.value = GeocodedState.HideWidget
+          }
+
+          hasAlreadyBeenGeocoded(point) -> {
+            Timber.e("$tag - Point has already been geocoded, not running again: $point")
+          }
+
+          else -> {
+            launchWorkingJob(geocoder)
+            mutableState.value = getStateFromPoint(point, geocoder)
+          }
         }
-        delay(REFRESH_PERIOD_MS)
+        delay(refreshPeriodMs())
       }
     }
   }
 
   fun stopGeocoding() {
-    Timber.v("stop")
+    Timber.v("$tag - stop")
     loopJob?.cancel()
     workingJob?.cancel()
     loopJob = null
@@ -62,18 +78,18 @@ class LocationMonitor @Inject constructor(
   }
 
   @Suppress("ReturnCount")
-  private suspend fun getStateFromPoint(selfPoint: GeoPoint?, geocoder: Geocoder): GeocodedState {
-    if (selfPoint == null) {
+  private suspend fun getStateFromPoint(point: GeoPoint?, geocoder: Geocoder): GeocodedState {
+    if (point == null) {
       workingJob?.cancel()
       return GeocodedState.NoPositionFound
     }
 
     if (!geocoder.checkAvailability()) {
-      Timber.w("Geocoder $geocoder is not available")
+      Timber.w("$tag - Geocoder $geocoder is not available")
       return GeocodedState.NotAvailable(geocoder)
     }
 
-    val addresses = withContext(io) { geocoder.getLocation(selfPoint) } // this blocks the thread
+    val addresses = withContext(io) { geocoder.getLocation(point) } // this blocks the thread
     workingJob?.cancel() // address has been fetched, so we're not blocking the thread any more
 
     if (addresses.isNullOrEmpty()) {
@@ -83,7 +99,7 @@ class LocationMonitor @Inject constructor(
     val address = addresses.first()
     val addressString = address.getExistingAddressLinesOrNull() ?: address.getAddressFromComponentsOrNull()
 
-    Timber.v("addressString = ${addressString?.split(NEW_LINE)}")
+    Timber.v("$tag - addressString = ${addressString?.split(NEW_LINE)}")
     return if (addressString == null) {
       GeocodedState.Failed("Couldn't parse address", geocoder)
     } else {
@@ -137,7 +153,6 @@ class LocationMonitor @Inject constructor(
   }
 
   private companion object {
-    const val REFRESH_PERIOD_MS = 3_000L
     const val NEW_LINE = "\n"
     const val COMMA = ","
   }

@@ -3,8 +3,9 @@ package dev.jonpoulton.geocoder.plugin
 import app.cash.turbine.test
 import com.atakmap.android.user.geocode.GeocodeManager.Geocoder
 import dev.jonpoulton.geocoder.geocoding.GeocodedState
-import dev.jonpoulton.geocoder.geocoding.LocationMonitor
+import dev.jonpoulton.geocoder.widget.self.SelfMarkerWidgetMapComponentViewModel
 import dev.jonpoulton.geocoder.settings.PluginPreferences
+import dev.jonpoulton.geocoder.widget.self.SelfMarkerLocationMonitor
 import gov.tak.platform.graphics.Color
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -17,12 +18,12 @@ import org.junit.Rule
 import org.junit.Test
 import kotlin.test.assertEquals
 
-class WidgetOverlayMapComponentViewModelTest {
+class SelfMarkerWidgetMapComponentViewModelTest {
   @get:Rule
   val mockkRule = MockKRule(this)
 
   @MockK
-  private lateinit var locationMonitor: LocationMonitor
+  private lateinit var locationMonitor: SelfMarkerLocationMonitor
 
   @MockK
   private lateinit var pluginPreferences: PluginPreferences
@@ -30,12 +31,12 @@ class WidgetOverlayMapComponentViewModelTest {
   @MockK
   private lateinit var mockGeocoder: Geocoder
 
-  private lateinit var viewModel: WidgetOverlayMapComponentViewModel
+  private lateinit var viewModel: SelfMarkerWidgetMapComponentViewModel
 
   @Before
   fun before() {
     every { mockGeocoder.title } returns GeocoderTitle
-    viewModel = WidgetOverlayMapComponentViewModel(
+    viewModel = SelfMarkerWidgetMapComponentViewModel(
       locationMonitor = locationMonitor,
       pluginPreferences = pluginPreferences,
     )

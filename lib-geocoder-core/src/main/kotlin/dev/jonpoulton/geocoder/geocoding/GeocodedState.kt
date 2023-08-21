@@ -9,6 +9,8 @@ sealed interface GeocodedState {
     val string: String
   }
 
+  sealed interface Invisible : GeocodedState
+
   data class Tagged(
     val state: Visible,
   ) : Visible {
@@ -24,7 +26,9 @@ sealed interface GeocodedState {
     val geocoder: Geocoder
   }
 
-  object NoPositionFound : GeocodedState
+  object NoPositionFound : Invisible
+
+  object HideWidget : Invisible
 
   data class Working(
     override val geocoder: Geocoder,

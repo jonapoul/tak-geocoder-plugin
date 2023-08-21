@@ -1,16 +1,15 @@
-package dev.jonpoulton.geocoder.plugin
+package dev.jonpoulton.geocoder.widget.self
 
 import dev.jonpoulton.alakazam.tak.ui.TakViewModel
 import dev.jonpoulton.geocoder.geocoding.GeocodedState
-import dev.jonpoulton.geocoder.geocoding.LocationMonitor
 import dev.jonpoulton.geocoder.settings.PluginPreferences
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
 import javax.inject.Inject
 
-class WidgetOverlayMapComponentViewModel @Inject constructor(
-  private val locationMonitor: LocationMonitor,
+class SelfMarkerWidgetMapComponentViewModel @Inject constructor(
+  private val locationMonitor: SelfMarkerLocationMonitor,
   private val pluginPreferences: PluginPreferences,
 ) : TakViewModel() {
   val geocodedState: Flow<GeocodedState>

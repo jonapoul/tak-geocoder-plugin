@@ -1,6 +1,7 @@
 package dev.jonpoulton.geocoder.di
 
 import android.os.Build
+import androidx.lifecycle.ViewModel
 import dagger.BindsInstance
 import dagger.Component
 import dev.jonpoulton.alakazam.core.IBuildConfig
@@ -78,3 +79,5 @@ interface GeocoderDependencyGraph : DaggerInjector {
 private var NullableInstance: GeocoderDependencyGraph? = null
 
 val DependencyGraph: GeocoderDependencyGraph by lazy { NullableInstance ?: error("Null component instance") }
+
+inline fun <reified VM : ViewModel> viewModels(): Lazy<VM> = lazy { DependencyGraph.vmFactory().create(VM::class.java) }
