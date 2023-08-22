@@ -22,7 +22,7 @@ object AboutDialog {
 
       buildTime.icon.setImageResource(R.drawable.ic_calendar)
       buildTime.title.setText(R.string.about_build_time)
-      val timestamp = "yyyy-dd-MM HH:mm:ss z".localisedFormatter.format(buildConfig.buildTime)
+      val timestamp = "yyyy-MM-dd HH:mm:ss z".localisedFormatter.format(buildConfig.buildTime)
       buildTime.subtitle.text = timestamp
 
       source.icon.setImageResource(R.drawable.ic_source)
