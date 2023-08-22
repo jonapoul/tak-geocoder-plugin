@@ -1,8 +1,5 @@
 package dev.jonpoulton.geocoder.plugin
 
-import android.app.Activity
-import android.content.Context
-import android.content.res.Configuration
 import com.atakmap.android.maps.MapActivity
 import com.atakmap.android.maps.MapView
 import com.atakmap.app.preferences.ToolsPreferenceFragment
@@ -15,13 +12,14 @@ import dev.jonpoulton.geocoder.tak.AppContext
 import dev.jonpoulton.geocoder.tak.PluginContext
 import dev.jonpoulton.geocoder.widget.centre.MapCentreWidgetMapComponent
 import dev.jonpoulton.geocoder.widget.self.SelfMarkerWidgetMapComponent
+import gov.tak.api.plugin.IPlugin
+import gov.tak.api.plugin.IServiceController
 import timber.log.Timber
 
-@Suppress("DEPRECATION")
-class GeocoderLifecycle(context: Context) : transapps.maps.plugin.lifecycle.Lifecycle {
+class GeocoderPlugin(serviceController: IServiceController) : IPlugin {
   private val viewModel by viewModels<GeocoderLifecycleViewModel>()
 
-  private val pluginContext = PluginContext(context)
+  private val pluginContext = PluginContext(serviceController)
   private val timberTree = GeocoderTree()
 
   private lateinit var mapView: MapView
@@ -30,10 +28,9 @@ class GeocoderLifecycle(context: Context) : transapps.maps.plugin.lifecycle.Life
   private var selfMarkerWidgetMapComponent: SelfMarkerWidgetMapComponent? = null
   private var mapCentreWidgetMapComponent: MapCentreWidgetMapComponent? = null
 
-  @Suppress("DEPRECATION")
-  override fun onCreate(activity: Activity, mv: transapps.mapi.MapView) {
-    Timber.v("onCreate")
-    mapView = mv.view as? MapView ?: error("Plugin is only compatible with ATAK MapView")
+  override fun onStart() {
+    Timber.v("onStart")
+    mapView = MapView.getMapView()
     appContext = AppContext(mapView)
     Timber.plant(timberTree)
     pluginContext.setTheme(R.style.Theme_Atak_Geocoder)
@@ -59,36 +56,13 @@ class GeocoderLifecycle(context: Context) : transapps.maps.plugin.lifecycle.Life
     mapView.mapActivity.registerMapComponent(mapCentreWidgetMapComponent)
   }
 
-  override fun onDestroy() {
+  override fun onStop() {
+    Timber.v("onStop")
     Timber.uproot(timberTree)
     viewModel.tearDown()
     ToolsPreferenceFragment.unregister(GeocoderSettingsFragment.KEY)
     mapView.mapActivity.unregisterMapComponent(selfMarkerWidgetMapComponent)
     mapView.mapActivity.unregisterMapComponent(mapCentreWidgetMapComponent)
-  }
-
-  override fun onStart() {
-    Timber.v("onStart")
-  }
-
-  override fun onPause() {
-    Timber.v("onPause")
-  }
-
-  override fun onResume() {
-    Timber.v("onResume")
-  }
-
-  override fun onStop() {
-    Timber.v("onStop")
-  }
-
-  override fun onConfigurationChanged(configuration: Configuration) {
-    Timber.v("onConfigurationChanged $configuration")
-  }
-
-  override fun onFinish() {
-    Timber.v("onFinish")
   }
 
   private val MapView.mapActivity: MapActivity
