@@ -9,6 +9,12 @@ plugins {
   id("convention-test")
 }
 
+android {
+  buildFeatures {
+    viewBinding = true
+  }
+}
+
 dependencies {
   implementation(project(":lib-core"))
   implementation(libs.alakazam.android.core)

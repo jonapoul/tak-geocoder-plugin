@@ -4,10 +4,6 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
-import android.view.View
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
 import com.atakmap.map.opengl.GLRenderGlobals.appContext
 import dev.jonpoulton.alakazam.core.IBuildConfig
 import dev.jonpoulton.alakazam.core.inflater
@@ -15,11 +11,11 @@ import dev.jonpoulton.alakazam.time.localisedFormatter
 import dev.jonpoulton.alakazam.ui.core.show
 import dev.jonpoulton.geocoder.tak.PluginContext
 import dev.jonpoulton.geocoder.tak.R
+import dev.jonpoulton.geocoder.tak.databinding.DialogAboutBinding
 
 object AboutDialog {
   fun show(activity: Activity, pluginContext: PluginContext, buildConfig: IBuildConfig): AlertDialog {
-    val view = pluginContext.inflater.inflate(R.layout.dialog_about, null, false)
-    AboutBinding(view).apply {
+    val binding = DialogAboutBinding.inflate(pluginContext.inflater).apply {
       version.icon.setImageResource(R.drawable.ic_version)
       version.title.setText(R.string.about_version)
       version.subtitle.text = buildConfig.versionName
@@ -41,34 +37,8 @@ object AboutDialog {
     }
     return PluginAlertDialogBuilder(activity, pluginContext)
       .setTitle(R.string.about_title)
-      .setView(view)
+      .setView(binding.root)
       .setSimplePositiveButton()
       .show()
-  }
-
-  private class AboutBinding(
-    val version: AboutItemBinding,
-    val buildTime: AboutItemBinding,
-    val source: AboutItemBinding,
-  ) {
-    constructor(view: View) : this(
-      version = AboutItemBinding(view.findViewById(R.id.version)),
-      buildTime = AboutItemBinding(view.findViewById(R.id.build_time)),
-      source = AboutItemBinding(view.findViewById(R.id.source)),
-    )
-  }
-
-  private class AboutItemBinding(
-    val icon: ImageView,
-    val title: TextView,
-    val subtitle: TextView,
-    val launchButton: ImageButton,
-  ) {
-    constructor(view: View) : this(
-      icon = view.findViewById(R.id.icon),
-      title = view.findViewById(R.id.title),
-      subtitle = view.findViewById(R.id.subtitle),
-      launchButton = view.findViewById(R.id.launch_button),
-    )
   }
 }
