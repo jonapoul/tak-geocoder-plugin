@@ -18,16 +18,7 @@ class MapCentreLocationMonitor @Inject constructor(
   private val mapCentrePreferences: MapCentrePreferences,
 ) : LocationMonitor(mapView, geocodeManager, scope, io) {
 
-  private var mostRecentPoint: GeoPoint? = null
-
-  override fun hasAlreadyBeenGeocoded(point: GeoPoint?): Boolean = when {
-    mostRecentPoint == null -> false
-    point == null -> false
-    point == mostRecentPoint -> true
-    else -> false
-  }.also {
-    mostRecentPoint = point
-  }
+  override val tag = "MapCentre"
 
   override fun geocodingEnabled(): Boolean = mapCentrePreferences.designateMapCentre.get()
 

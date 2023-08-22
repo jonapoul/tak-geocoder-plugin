@@ -19,9 +19,9 @@ import timber.log.Timber
 
 abstract class LocationMonitor(
   protected val mapView: MapView,
-  protected val geocodeManager: GeocodeManager,
-  protected val scope: CoroutineScope,
-  protected val io: IODispatcher,
+  private val geocodeManager: GeocodeManager,
+  private val scope: CoroutineScope,
+  private val io: IODispatcher,
 ) {
   private val mutableState = MutableStateFlow<GeocodedState>(value = GeocodedState.NoPositionFound)
 
@@ -30,11 +30,12 @@ abstract class LocationMonitor(
 
   private var loopJob: Job? = null
   private var workingJob: Job? = null
-  private val tag = this::class.java.simpleName
+  protected abstract val tag: String
+
+  private var mostRecentPoint: GeoPoint? = null
 
   protected abstract fun getPoint(): GeoPoint?
   protected abstract fun refreshPeriodMs(): Long
-  protected open fun hasAlreadyBeenGeocoded(point: GeoPoint?): Boolean = false
   protected open fun geocodingEnabled(): Boolean = true
 
   fun startGeocoding() {
@@ -55,7 +56,7 @@ abstract class LocationMonitor(
             mutableState.value = GeocodedState.HideWidget
           }
 
-          hasAlreadyBeenGeocoded(point) -> {
+          point.hasAlreadyBeenGeocoded() -> {
             Timber.e("$tag - Point has already been geocoded, not running again: $point")
           }
 
@@ -150,6 +151,15 @@ abstract class LocationMonitor(
     !testServiceAvailable() -> false
     this !is Geocoder2 -> false
     else -> isAvailable // from the Geocoder2 interface
+  }
+
+  private fun GeoPoint?.hasAlreadyBeenGeocoded(): Boolean = when {
+    mostRecentPoint == null -> false
+    this == null -> false
+    this == mostRecentPoint -> true
+    else -> false
+  }.also {
+    mostRecentPoint = this
   }
 
   private companion object {

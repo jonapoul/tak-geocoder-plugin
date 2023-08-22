@@ -17,7 +17,10 @@ class SelfMarkerLocationMonitor @Inject constructor(
   io: IODispatcher,
 ) : LocationMonitor(mapView, geocodeManager, scope, io) {
 
+  override val tag = "SelfMarker"
+
   override fun getPoint(): GeoPoint? = mapView.selfMarker.point
+
   override fun refreshPeriodMs(): Long = REFRESH_PERIOD_MS
 
   private companion object {
