@@ -4,6 +4,13 @@
 ################################################################################################
 ################################################################################################
 
+# Do not strip any method/class that is annotated with @DontObfuscate
+-keep,allowobfuscation @interface gov.tak.api.annotation.DontObfuscate
+-keep @gov.tak.api.annotation.DontObfuscate class * {*;}
+-keepclassmembers class * {
+    @gov.tak.api.annotation.DontObfuscate *;
+}
+
 -dontskipnonpubliclibraryclasses
 -dontshrink
 -dontoptimize
@@ -39,10 +46,11 @@
     @org.simpleframework.xml.* *;
 }
 
--keep class * extends transapps.maps.plugin.tool.Tool {
+-keep class * implements gov.tak.api.plugin.IPlugin {
 }
--keep class * implements transapps.maps.plugin.lifecycle.Lifecycle {
-}
+
+-keep class org.simpleframework.** {*;}
+-keep class com.atak.maps.daco.xml.** {*;}
 
 # overcome an existing bug in the gradle subsystem (3.5.x)
 -keep class module-info

@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
   id("convention-android-lib")
   id("atak-takdev-plugin")
@@ -6,6 +8,12 @@ plugins {
   id("convention-style")
   id("convention-test")
   kotlin("plugin.serialization")
+}
+
+tasks.withType<KotlinCompile> {
+  kotlinOptions {
+    freeCompilerArgs += "-opt-in=kotlinx.serialization.ExperimentalSerializationApi"
+  }
 }
 
 dependencies {

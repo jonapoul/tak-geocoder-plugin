@@ -10,6 +10,7 @@ configurations.configureEach {
   exclude(group = "androidx.arch.core", module = "core-runtime")
   exclude(group = "androidx.collection", module = "collection")
   exclude(group = "androidx.core", module = "core")
+  exclude(group = "androidx.core-ktx", module = "core")
   exclude(group = "androidx.customview", module = "customview")
   exclude(group = "androidx.exifinterface", module = "exifinterface")
   exclude(group = "androidx.fragment", module = "fragment")
