@@ -21,10 +21,12 @@ spotless = "6.18.0"
 takdev = "2.4.1-debug2"
 
 # Libraries
-alakazam = "3.6.0"
+alakazam = "3.7.1"
 android-desugaring = "1.1.5"
 androidx-core-ktx = "1.6.0"
+androidx-fragment = "1.3.6"
 androidx-lifecycle = "2.5.1"
+androidx-recyclerview = "1.1.0"
 dagger = "2.47"
 flowpreferences = "1.7.0"
 javax-inject = "1"
@@ -62,13 +64,11 @@ alakazam-android-ui-viewBinding = { module = "dev.jonpoulton.alakazam:android-ui
 alakazam-kotlin-core = { module = "dev.jonpoulton.alakazam:kotlin-core", version.ref = "alakazam" }
 alakazam-kotlin-json = { module = "dev.jonpoulton.alakazam:kotlin-json", version.ref = "alakazam" }
 alakazam-kotlin-time = { module = "dev.jonpoulton.alakazam:kotlin-time", version.ref = "alakazam" }
-alakazam-tak-core = { module = "dev.jonpoulton.alakazam:tak-core", version.ref = "alakazam" }
-alakazam-tak-dagger = { module = "dev.jonpoulton.alakazam:tak-dagger", version.ref = "alakazam" }
-alakazam-tak-plugin = { module = "dev.jonpoulton.alakazam:tak-plugin", version.ref = "alakazam" }
-alakazam-tak-ui = { module = "dev.jonpoulton.alakazam:tak-ui", version.ref = "alakazam" }
 android-desugaring = { module = "com.android.tools:desugar_jdk_libs", version.ref = "android-desugaring" }
 androidx-coreKtx = { module = "androidx.core:core-ktx", version.ref = "androidx-core-ktx" }
+androidx-fragmentKtx = { module = "androidx.fragment:fragment-ktx", version.ref = "androidx-fragment" }
 androidx-lifecycleRuntimeKtx = { module = "androidx.core:core-ktx", version.ref = "androidx-core-ktx" }
+androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "androidx-recyclerview" }
 dagger-core = { module = "com.google.dagger:dagger", version.ref = "dagger" }
 dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
 flowpreferences = { module = "com.fredporciuncula:flow-preferences", version.ref = "flowpreferences" }

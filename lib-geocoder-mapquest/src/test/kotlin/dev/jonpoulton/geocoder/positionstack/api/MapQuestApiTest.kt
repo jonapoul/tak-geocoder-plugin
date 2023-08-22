@@ -1,8 +1,8 @@
 package dev.jonpoulton.geocoder.positionstack.api
 
 import dev.jonpoulton.alakazam.test.getResourceAsStream
-import dev.jonpoulton.geocoder.http.LenientJson
 import dev.jonpoulton.geocoder.geocoding.Coordinates
+import dev.jonpoulton.geocoder.http.LenientJson
 import dev.jonpoulton.geocoder.mapquest.api.MapQuestApiWrapper
 import dev.jonpoulton.geocoder.mapquest.model.ForwardGeocodingRequest
 import dev.jonpoulton.geocoder.mapquest.model.ForwardGeocodingResponse

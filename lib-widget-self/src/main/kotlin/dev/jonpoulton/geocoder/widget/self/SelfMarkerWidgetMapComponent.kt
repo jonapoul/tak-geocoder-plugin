@@ -7,11 +7,11 @@ import com.atakmap.android.widgets.MapWidget
 import com.atakmap.android.widgets.RootLayoutWidget
 import com.atakmap.android.widgets.TextWidget
 import com.atakmap.app.SettingsActivity
-import dev.jonpoulton.alakazam.tak.di.DaggerInjector
-import dev.jonpoulton.alakazam.tak.di.viewModels
 import dev.jonpoulton.geocoder.geocoding.GeocodedState
 import dev.jonpoulton.geocoder.geocoding.GeocoderWidgetMapComponent
 import dev.jonpoulton.geocoder.settings.GeocoderSettingsFragment
+import dev.jonpoulton.geocoder.tak.di.DaggerInjector
+import dev.jonpoulton.geocoder.tak.di.viewModels
 import kotlinx.coroutines.flow.Flow
 import timber.log.Timber
 

@@ -8,6 +8,7 @@ include(":lib-geocoder-positionstack")
 include(":lib-geocoder-what3words")
 include(":lib-http")
 include(":lib-settings")
+include(":lib-tak")
 include(":lib-widget-mapcentre")
 include(":lib-widget-self")
 

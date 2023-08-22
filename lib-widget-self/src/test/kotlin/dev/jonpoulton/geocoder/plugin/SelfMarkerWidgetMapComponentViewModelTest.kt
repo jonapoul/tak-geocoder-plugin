@@ -3,9 +3,9 @@ package dev.jonpoulton.geocoder.plugin
 import app.cash.turbine.test
 import com.atakmap.android.user.geocode.GeocodeManager.Geocoder
 import dev.jonpoulton.geocoder.geocoding.GeocodedState
-import dev.jonpoulton.geocoder.widget.self.SelfMarkerWidgetMapComponentViewModel
 import dev.jonpoulton.geocoder.settings.PluginPreferences
 import dev.jonpoulton.geocoder.widget.self.SelfMarkerLocationMonitor
+import dev.jonpoulton.geocoder.widget.self.SelfMarkerWidgetMapComponentViewModel
 import gov.tak.platform.graphics.Color
 import io.mockk.every
 import io.mockk.impl.annotations.MockK

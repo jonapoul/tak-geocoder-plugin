@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import com.atakmap.android.preference.PluginPreferenceFragment
 import com.atakmap.app.SettingsActivity
-import dev.jonpoulton.alakazam.tak.core.PluginContext
-import dev.jonpoulton.alakazam.tak.di.DaggerInjector
+import dev.jonpoulton.geocoder.tak.PluginContext
+import dev.jonpoulton.geocoder.tak.di.DaggerInjector
 import timber.log.Timber
 
 @Suppress("DEPRECATION", "OVERRIDE_DEPRECATION")

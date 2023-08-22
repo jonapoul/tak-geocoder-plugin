@@ -4,7 +4,6 @@ import android.location.Address
 import android.net.ConnectivityManager
 import com.atakmap.coremap.maps.coords.GeoBounds
 import com.atakmap.coremap.maps.coords.GeoPoint
-import dev.jonpoulton.alakazam.tak.core.PluginContext
 import dev.jonpoulton.geocoder.core.isNetworkAvailable
 import dev.jonpoulton.geocoder.geocoding.Coordinates
 import dev.jonpoulton.geocoder.geocoding.CustomHttpGeocoder
@@ -14,6 +13,7 @@ import dev.jonpoulton.geocoder.positionstack.model.ForwardGeocodingResponse
 import dev.jonpoulton.geocoder.positionstack.model.PositionStackApiKey
 import dev.jonpoulton.geocoder.positionstack.model.ReverseGeocodingResponse
 import dev.jonpoulton.geocoder.positionstack.model.lines
+import dev.jonpoulton.geocoder.tak.PluginContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import timber.log.Timber
