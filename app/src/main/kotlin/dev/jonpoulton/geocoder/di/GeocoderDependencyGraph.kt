@@ -14,6 +14,7 @@ import dev.jonpoulton.geocoder.positionstack.di.PositionStackModule
 import dev.jonpoulton.geocoder.tak.AppContext
 import dev.jonpoulton.geocoder.tak.PluginContext
 import dev.jonpoulton.geocoder.tak.di.DaggerInjector
+import dev.jonpoulton.geocoder.w3w.di.WhatThreeWordsModule
 import javax.inject.Singleton
 
 @Singleton
@@ -27,6 +28,7 @@ import javax.inject.Singleton
     PositionStackModule::class,
     PreferencesModule::class,
     SystemServiceModule::class,
+    WhatThreeWordsModule::class,
   ],
 )
 interface GeocoderDependencyGraph : DaggerInjector {
