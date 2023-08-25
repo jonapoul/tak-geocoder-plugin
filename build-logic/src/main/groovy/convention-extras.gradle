@@ -1,3 +1,27 @@
+import java.lang.management.ManagementFactory
+
+project.properties.ext.properties
+    .toSorted { entry -> entry.key.toString().toLowerCase() }
+    .forEach { k, v -> println("ext.properties $k=$v") }
+
+project.properties
+    .toSorted { entry -> entry.key.toLowerCase() }
+    .forEach { k, v -> println("project.properties $k=$v") }
+
+ManagementFactory.getRuntimeMXBean()
+    .getInputArguments()
+    .toSorted { arg -> arg.toLowerCase() }
+    .forEach { arg -> println("jvmArgs $arg") }
+
+System.getenv()
+    .toSorted { entry -> entry.key.toLowerCase() }
+    .forEach { k, v -> println("System.getenv $k=$v") }
+
+System.getProperties()
+    .entrySet()
+    .toSorted { entry -> entry.key.toString().toLowerCase() }
+    .forEach { entry -> println("System.getProperties ${entry.key}=${entry.value}") }
+
 ext.isDevKitEnabled = { ->
     return getProperty("takrepo.url", null) != null
 }

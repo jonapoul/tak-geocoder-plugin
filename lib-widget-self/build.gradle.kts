@@ -1,5 +1,6 @@
 plugins {
   id("convention-android-lib")
+  id("atak-takdev-plugin")
   id("convention-atak-sdk")
   id("convention-style")
   id("convention-test")

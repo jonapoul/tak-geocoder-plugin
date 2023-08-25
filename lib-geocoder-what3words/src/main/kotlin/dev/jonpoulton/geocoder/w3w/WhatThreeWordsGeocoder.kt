@@ -4,7 +4,7 @@ import android.location.Address
 import android.net.ConnectivityManager
 import com.atakmap.coremap.maps.coords.GeoBounds
 import com.atakmap.coremap.maps.coords.GeoPoint
-import dev.jonpoulton.geocoder.core.isNetworkAvailable
+import dev.jonpoulton.geocoder.geocoding.isNetworkAvailable
 import dev.jonpoulton.geocoder.geocoding.CustomHttpGeocoder
 import dev.jonpoulton.geocoder.tak.PluginContext
 import dev.jonpoulton.geocoder.w3w.api.WhatThreeWordsApi

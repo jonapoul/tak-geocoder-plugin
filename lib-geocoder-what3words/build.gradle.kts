@@ -1,15 +1,14 @@
 plugins {
   id("convention-android-lib")
+  id("atak-takdev-plugin")
   id("convention-atak-sdk")
   id("convention-dagger")
   id("convention-style")
   id("convention-test")
-
   kotlin("plugin.serialization")
 }
 
 dependencies {
-  implementation(project(":lib-core"))
   implementation(project(":lib-http"))
   implementation(project(":lib-geocoder-core"))
   implementation(project(":lib-tak"))

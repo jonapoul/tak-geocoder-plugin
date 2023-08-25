@@ -1,1 +1,6 @@
-<manifest package="dev.jonpoulton.geocoder.geocoding" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="dev.jonpoulton.geocoder.geocoding">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+</manifest>

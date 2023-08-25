@@ -1,4 +1,4 @@
-package dev.jonpoulton.geocoder.core
+package dev.jonpoulton.geocoder.geocoding
 
 import kotlinx.coroutines.runBlocking
 import timber.log.Timber

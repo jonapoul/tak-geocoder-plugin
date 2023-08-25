@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import dagger.BindsInstance
 import dagger.Component
 import dev.jonpoulton.alakazam.core.IBuildConfig
-import dev.jonpoulton.geocoder.core.GeocoderBuildConfig
+import dev.jonpoulton.geocoder.geocoding.GeocoderBuildConfig
 import dev.jonpoulton.geocoder.http.di.HttpModule
 import dev.jonpoulton.geocoder.mapquest.di.MapQuestModule
 import dev.jonpoulton.geocoder.plugin.BuildConfig
@@ -65,15 +65,15 @@ interface GeocoderDependencyGraph : DaggerInjector {
         override val mapQuestApiKey = BuildConfig.MAPQUEST_API_KEY
       }
 
-      NullableInstance = DaggerGeocoderDependencyGraph.factory()
+      nullableGraph = DaggerGeocoderDependencyGraph.factory()
         .withInstances(pluginContext, appContext, buildConfig, buildConfig)
     }
   }
 }
 
-private var NullableInstance: GeocoderDependencyGraph? = null
+private var nullableGraph: GeocoderDependencyGraph? = null
 
-val DependencyGraphInstance: GeocoderDependencyGraph by lazy { NullableInstance ?: error("Null component instance") }
+val DependencyGraphInstance: GeocoderDependencyGraph by lazy { nullableGraph ?: error("Null component instance") }
 
 inline fun <reified VM : ViewModel> viewModels(): Lazy<VM> =
   lazy { DependencyGraphInstance.vmFactory().create(VM::class.java) }

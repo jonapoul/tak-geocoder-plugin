@@ -33,7 +33,7 @@
       android:id="@+id/subtitle"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:textColor="@color/lighter_grey"
+      android:textColor="#cccccc"
       tools:text="Subtitle" />
 
   </android.widget.LinearLayout>

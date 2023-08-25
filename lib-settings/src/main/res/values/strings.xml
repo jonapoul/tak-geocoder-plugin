@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="settings_title">@string/app_name</string>
+    <string name="settings_title">Geocoder</string>
     <string name="settings_summary">Geocoder Plugin settings</string>
 
     <string name="include_tag_title">Include Geocoder Name?</string>

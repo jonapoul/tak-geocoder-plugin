@@ -1,14 +1,25 @@
 buildscript {
-  val isPipeline = properties["takrepo.url"] != null
+  val isPipeline = System.getenv("ATAK_CI")?.toIntOrNull() == 1
+  val takrepoUrl = project.properties["takrepo.url"] ?: "https://localhost/"
+  val takrepoUser = project.properties["takrepo.user"]?.toString() ?: "invalid"
+  val takrepoPassword = project.properties["takrepo.password"]?.toString() ?: "invalid"
+  val takDevPlugin = project.properties["takrepo.plugin"]
+    ?: "${rootProject.rootDir}/../ATAK-CIV-4.10.0.4-SDK/atak-gradle-takdev.jar"
 
   extra.apply {
-    set("takrepoUrl", project.properties["takrepo.url"] ?: "http://localhost/")
+    set("takrepoUrl", takrepoUrl)
     set("takrepoUser", project.properties["takrepo.user"] ?: "invalid")
     set("takrepoPassword", project.properties["takrepo.password"] ?: "invalid")
-    set("takdevPlugin", project.properties["takrepo.plugin"] ?: "${rootDir}/../../atak-gradle-takdev.jar")
+    set("takdevPlugin", takDevPlugin)
     set("takdevConTestEnable", false)
+    set("takdev.verbose", true)
     set("ATAK_VERSION", libs.versions.atak.get())
     set("PLUGIN_VERSION", libs.versions.pluginVersionName.get())
+
+    if (!isPipeline) {
+      /* Only needed to work around weirdness with the takdev plugin with my debug fork */
+      set("takrepo.devkit.version", "4.10.2")
+    }
   }
   println("Extras = ${extra.properties}")
 
@@ -26,17 +37,15 @@ buildscript {
 
     if (isPipeline) {
       println("Using pipeline, declaring takRepo maven repo")
-      val takrepoUrl = getStringProperty(key = "takrepoUrl")
-      val takrepoUser = getStringProperty(key = "takrepoUser")
-      val takrepoPassword = getStringProperty(key = "takrepoPassword")
       maven {
-        isAllowInsecureProtocol = true
         url = uri(takrepoUrl)
         credentials {
           username = takrepoUser
           password = takrepoPassword
         }
       }
+    } else {
+      mavenLocal()
     }
   }
 
@@ -52,20 +61,17 @@ buildscript {
     classpath(libs.plugin.spotless)
 
     if (isPipeline) {
-      /* Full-fat plugin */
+      println("Loading proper takdev")
       classpath("com.atakmap.gradle:atak-gradle-takdev:2.+")
     } else {
-      /* Abridged plugin which skips a bunch of the SDK resolution steps */
-      val takDevVersion = libs.versions.takdev.get()
-      classpath("com.github.jonapoul:atak-gradle-takdev:$takDevVersion")
+      println("Loading debug takdev from local maven")
+      classpath("com.atakmap.gradle:atak-gradle-takdev:2.4.1-debug3")
     }
   }
 }
 
 plugins {
   alias(libs.plugins.doctor) // configured below
-
-  id("convention-properties")
   id("convention-extras")
 }
 

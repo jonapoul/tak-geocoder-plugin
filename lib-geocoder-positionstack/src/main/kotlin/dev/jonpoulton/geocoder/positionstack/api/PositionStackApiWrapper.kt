@@ -1,7 +1,7 @@
 package dev.jonpoulton.geocoder.positionstack.api
 
-import dev.jonpoulton.geocoder.core.runBlockingOrNull
 import dev.jonpoulton.geocoder.geocoding.Coordinates
+import dev.jonpoulton.geocoder.geocoding.runBlockingOrNull
 import dev.jonpoulton.geocoder.http.LenientJson
 import dev.jonpoulton.geocoder.positionstack.model.ForwardGeocodingResponse
 import dev.jonpoulton.geocoder.positionstack.model.PositionStackApiKey

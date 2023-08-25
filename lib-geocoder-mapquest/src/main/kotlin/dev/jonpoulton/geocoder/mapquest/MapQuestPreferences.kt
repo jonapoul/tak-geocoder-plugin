@@ -5,7 +5,7 @@ import com.fredporciuncula.flow.preferences.Preference
 import dev.jonpoulton.alakazam.prefs.PrefPair
 import dev.jonpoulton.alakazam.prefs.SimpleNullableStringSerializer
 import dev.jonpoulton.alakazam.prefs.getNullableObject
-import dev.jonpoulton.geocoder.core.GeocoderBuildConfig
+import dev.jonpoulton.geocoder.geocoding.GeocoderBuildConfig
 import dev.jonpoulton.geocoder.geocoding.Initializable
 import dev.jonpoulton.geocoder.mapquest.model.MapQuestApiKey
 import javax.inject.Inject

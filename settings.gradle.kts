@@ -1,7 +1,6 @@
 includeBuild("build-logic")
 
 include(":app")
-include(":lib-core")
 include(":lib-geocoder-core")
 include(":lib-geocoder-mapquest")
 include(":lib-geocoder-positionstack")

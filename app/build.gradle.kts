@@ -150,7 +150,6 @@ android {
 
 dependencies {
   listOf(
-    ":lib-core",
     ":lib-geocoder-core",
     ":lib-geocoder-mapquest",
     ":lib-geocoder-positionstack",
@@ -160,15 +159,13 @@ dependencies {
     ":lib-widget-self",
     ":lib-settings",
     ":lib-tak",
-  ).map(::project).forEach(::implementation)
+  ).forEach { implementation(project(it)) }
 
   implementation(libs.alakazam.android.core)
   implementation(libs.alakazam.kotlin.core)
   implementation(libs.alakazam.kotlin.time)
-
   implementation(libs.flowpreferences)
   implementation(libs.timber)
-
   testImplementation(project(":lib-test"))
 }
 
