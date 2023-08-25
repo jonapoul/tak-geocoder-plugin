@@ -1,3 +1,5 @@
+import org.gradle.api.internal.artifacts.dsl.dependencies.DependencyAdderExtensionModule.module
+
 buildscript {
   val isPipeline = System.getenv("ATAK_CI")?.toIntOrNull() == 1
   val takrepoUrl = project.properties["takrepo.url"] ?: "https://localhost/"
@@ -8,8 +10,8 @@ buildscript {
 
   extra.apply {
     set("takrepoUrl", takrepoUrl)
-    set("takrepoUser", project.properties["takrepo.user"] ?: "invalid")
-    set("takrepoPassword", project.properties["takrepo.password"] ?: "invalid")
+    set("takrepoUser", takrepoUser)
+    set("takrepoPassword", takrepoPassword)
     set("takdevPlugin", takDevPlugin)
     set("takdevConTestEnable", false)
     set("takdev.verbose", true)
@@ -22,11 +24,6 @@ buildscript {
     }
   }
   println("Extras = ${extra.properties}")
-
-  fun Project.getStringProperty(key: String): String {
-    val value = project.properties[key]
-    return value as? String ?: error("Expected string from $key, got $value")
-  }
 
   repositories {
     gradlePluginPortal()
