@@ -53,7 +53,6 @@ plugin-spotless = { module = "com.diffplug.spotless:spotless-plugin-gradle", ver
 
 # Libraries
 alakazam-android-core = { module = "dev.jonpoulton.alakazam:android-core", version.ref = "alakazam" }
-alakazam-android-logging = { module = "dev.jonpoulton.alakazam:android-logging", version.ref = "alakazam" }
 alakazam-android-prefs = { module = "dev.jonpoulton.alakazam:android-prefs", version.ref = "alakazam" }
 alakazam-android-ui-core = { module = "dev.jonpoulton.alakazam:android-ui-core", version.ref = "alakazam" }
 alakazam-android-ui-viewBinding = { module = "dev.jonpoulton.alakazam:android-ui-viewbinding", version.ref = "alakazam" }

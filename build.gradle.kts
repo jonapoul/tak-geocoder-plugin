@@ -1,5 +1,3 @@
-import org.gradle.api.internal.artifacts.dsl.dependencies.DependencyAdderExtensionModule.module
-
 buildscript {
   val isPipeline = System.getenv("ATAK_CI")?.toIntOrNull() == 1
   val takrepoUrl = project.properties["takrepo.url"] ?: "https://localhost/"

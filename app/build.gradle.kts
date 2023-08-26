@@ -185,7 +185,8 @@ fun getVersionName(): String {
     println("versionName[git]: $version")
     version
   } catch (e: Exception) {
-    println("error occured, using version of $version")
+    e.printStackTrace()
+    println("error occurred, using version of $version")
     "1"
   }
 }
@@ -199,7 +200,8 @@ fun getVersionCode(): Int {
     println("version[git]: $revision")
     revision
   } catch (e: Exception) {
-    println("error occured, using default revision")
+    e.printStackTrace()
+    println("error occurred, using default revision")
     1
   }
 }
