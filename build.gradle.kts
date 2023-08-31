@@ -59,8 +59,8 @@ buildscript {
       println("Loading proper takdev")
       classpath("com.atakmap.gradle:atak-gradle-takdev:2.+")
     } else {
-      println("Loading debug takdev from local maven")
-      classpath("com.atakmap.gradle:atak-gradle-takdev:2.4.1-debug3")
+      println("Loading debug takdev from jitpack")
+      classpath("com.github.jonapoul:atak-gradle-takdev:2.4.1-debug3")
     }
   }
 }
