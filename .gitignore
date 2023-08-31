@@ -37,6 +37,7 @@ captures/
 # IntelliJ
 .idea/*
 !.idea/detekt.xml
+!.idea/gradle.xml
 
 # Keystore files
 *.keystore
